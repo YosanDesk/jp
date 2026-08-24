@@ -148,6 +148,7 @@ const selectors = {
   syncPill: document.querySelector("#sync-pill"),
   modePill: document.querySelector("#mode-pill"),
   editToggle: document.querySelector("#edit-toggle"),
+  manageMembers: document.querySelector("#manage-members"),
   quickAdjust: document.querySelector("#quick-adjust"),
   statusTitle: document.querySelector("#status-title"),
   statusCopy: document.querySelector("#status-copy"),
@@ -1185,6 +1186,7 @@ function renderMembers() {
 }
 
 function addMember() {
+  if (!requireEditing()) return;
   const name = selectors.newMemberName.value.trim();
   if (!name) {
     showToast("请先输入成员姓名");
@@ -1207,6 +1209,7 @@ function addMember() {
 }
 
 function deleteMember(memberId) {
+  if (!requireEditing()) return;
   const member = state.members.find((item) => item.id === memberId);
   if (!member) return;
   if (!window.confirm(`确认删除成员「${member.name}」吗？相关项目和需求会变为未分配，TA的日程占用会被移除。`)) return;
@@ -1907,6 +1910,12 @@ function requireEditing() {
   return false;
 }
 
+function openMemberManager() {
+  if (!requireEditing()) return;
+  document.querySelector("#management-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  window.setTimeout(() => selectors.newMemberName?.focus(), 350);
+}
+
 function showToast(message) {
   selectors.toast.textContent = message;
   selectors.toast.classList.add("show");
@@ -2242,6 +2251,8 @@ selectors.quickAdjust.addEventListener("click", () => {
   if (!requireEditing()) return;
   openQuickAdjust();
 });
+
+selectors.manageMembers?.addEventListener("click", openMemberManager);
 
 selectors.quickWeekType.addEventListener("change", () => {
   selectors.quickWorkdays.value = selectors.quickWeekType.value === "big" ? 5 : 6;
