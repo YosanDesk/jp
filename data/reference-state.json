@@ -1,0 +1,2605 @@
+{
+  "week": {
+    "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+    "type": "small",
+    "workdays": 6,
+    "updatedAt": "08/22 09:40",
+    "dailyStandard": 4,
+    "currentWeekKey": "2026-08-24"
+  },
+  "events": [],
+  "members": [
+    {
+      "id": "m1",
+      "name": "王敬文"
+    },
+    {
+      "id": "m2",
+      "name": "朱耀赞"
+    }
+  ],
+  "version": 15,
+  "projects": [],
+  "requests": [
+    {
+      "id": "request-1782198437137",
+      "due": "6.24",
+      "name": "许培天官网日本款需求需求",
+      "note": "",
+      "type": "新拍摄",
+      "units": 3,
+      "docUrl": "https://lanhevip.feishu.cn/wiki/RThqwewzji8nbNkZ60Tc05BEnxF?from=from_copylink",
+      "status": "归档历史",
+      "channel": "官网",
+      "urgency": "优先",
+      "weekKey": "2026-06-21",
+      "requester": "许培天",
+      "archivedAt": "2026-06-21",
+      "assigneeId": "m1",
+      "assigneeIds": [
+        "m1"
+      ],
+      "requestTopic": "日本款需求"
+    },
+    {
+      "id": "request-1783567395726",
+      "due": "2026-07-17",
+      "name": "常旸曦宇亚马逊hue三种钩子拍摄需求",
+      "note": "上周未完成，需重新排期。感谢！！",
+      "type": "新方向新拍摄",
+      "units": 3,
+      "docUrl": "https://lanhevip.feishu.cn/wiki/UJoaw2oAciBafMkdjOqcYLfDnJd?from=from_copylink",
+      "status": "归档历史",
+      "channel": "亚马逊",
+      "urgency": "紧急",
+      "weekKey": "2026-07-20",
+      "requester": "常旸曦宇",
+      "archivedAt": "2026-07-20",
+      "assigneeId": "m1",
+      "assigneeIds": [
+        "m1"
+      ],
+      "completedAt": "2026-07-22",
+      "requestTopic": "hue三种钩子拍摄"
+    },
+    {
+      "id": "request-1784517220277",
+      "due": "2026-07-24",
+      "name": "陆厅亚马逊雅盾摄影图需求",
+      "note": "",
+      "type": "旧方向新拍摄",
+      "units": 4,
+      "docUrl": "",
+      "status": "归档历史",
+      "channel": "亚马逊",
+      "urgency": "紧急",
+      "weekKey": "2026-07-20",
+      "requester": "陆厅",
+      "archivedAt": "2026-07-20",
+      "assigneeId": "",
+      "assigneeIds": [],
+      "completedAt": "2026-07-22",
+      "requestTopic": "雅盾摄影图"
+    },
+    {
+      "id": "request-1786521256821",
+      "due": "2026-08-16",
+      "name": "陆厅亚马逊Wind实拍图需求",
+      "note": "上周未完成，需重新排期。",
+      "type": "旧方向新拍摄",
+      "units": 9,
+      "docUrl": "https://lanhevip.feishu.cn/wiki/XngjwdqjLizAtAkgIyFcPH4qnCb?from=from_copylink",
+      "status": "归档历史",
+      "channel": "亚马逊",
+      "urgency": "紧急",
+      "weekKey": "2026-08-17",
+      "requester": "陆厅",
+      "archivedAt": "2026-08-17",
+      "assigneeId": "",
+      "assigneeIds": [],
+      "completedAt": "2026-08-18",
+      "requestTopic": "Wind实拍图"
+    }
+  ],
+  "weeklyArchives": [
+    {
+      "id": "week-2026-06-29",
+      "week": {
+        "note": "历史周记录恢复",
+        "type": "big",
+        "workdays": 5,
+        "updatedAt": "07/03 13:39",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-06-29"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1782781672910",
+          "day": 1,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1782781676977",
+          "day": 1,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1782800312457",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1782810873583",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1782895378073",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1782895384297",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1782895390608",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1782895395553",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1782895398737",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1782895401600",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        },
+        {
+          "id": "member-1782789762497",
+          "name": "胡家伟"
+        }
+      ],
+      "summary": {
+        "eventUnits": 14,
+        "projectUnits": 36,
+        "requestUnits": 0
+      },
+      "weekKey": "2026-06-29",
+      "projects": [
+        {
+          "id": "internalProject-1782781578735",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革测不同钩子",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782781606807",
+          "day": 2,
+          "due": "周二",
+          "name": "air pro18测试",
+          "risk": "",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782781646487",
+          "day": 2,
+          "due": "周二",
+          "name": "air pro测试",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782784654391",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782868072215",
+          "day": 3,
+          "due": "周三",
+          "name": "air pro18存量",
+          "risk": "",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782868085070",
+          "day": 3,
+          "due": "周三",
+          "name": "air pro18存量",
+          "risk": "",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782868110550",
+          "day": 1,
+          "due": "周一",
+          "name": "air常规款",
+          "risk": "素材缺失",
+          "type": "自主安排",
+          "units": 4,
+          "status": "阻塞",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782956785724",
+          "day": 4,
+          "due": "周四",
+          "name": "皮革18存量",
+          "risk": "",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782956794461",
+          "day": 4,
+          "due": "周四",
+          "name": "皮革18存量",
+          "risk": "",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1782956835736",
+          "day": 4,
+          "due": "周四",
+          "name": "充电余留",
+          "risk": "",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1783042725102",
+          "day": 5,
+          "due": "周五",
+          "name": "Ohue",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1783042755349",
+          "day": 5,
+          "due": "周五",
+          "name": "air存量",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1783049681173",
+          "day": 5,
+          "due": "周五",
+          "name": "air常规款补齐",
+          "risk": "",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "普通"
+        },
+        {
+          "id": "internalProject-1783057158412",
+          "day": 4,
+          "due": "周四",
+          "name": "hue图片",
+          "risk": "",
+          "type": "自主安排",
+          "units": 0,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "普通"
+        }
+      ],
+      "requests": [],
+      "archivedAt": "2026-07-06"
+    },
+    {
+      "id": "week-2026-07-06",
+      "week": {
+        "note": "已恢复第二天自动完成逻辑；本次修复未发送飞书通知。",
+        "type": "small",
+        "workdays": 6,
+        "updatedAt": "07/10 17:51",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-07-06"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "week-20260706-tue-wjw-shooting",
+          "day": 2,
+          "note": "周二拍摄占用半天",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "week-20260706-tue-zyz-shooting",
+          "day": 2,
+          "note": "周二拍摄占用半天",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1783473947753",
+          "day": 3,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1783473950465",
+          "day": 3,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1783473953961",
+          "day": 3,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1783561148526",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1783561155576",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1783561160752",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1783647427120",
+          "day": 5,
+          "note": "air\\air pro",
+          "type": "半天拍摄",
+          "units": 3,
+          "memberId": "member-1782789762497"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        },
+        {
+          "id": "member-1782789762497",
+          "name": "胡家伟"
+        }
+      ],
+      "summary": {
+        "eventUnits": 13,
+        "projectUnits": 47,
+        "requestUnits": 0
+      },
+      "weekKey": "2026-07-06",
+      "projects": [
+        {
+          "id": "week-20260706-mon-wjw-leather",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革剪辑",
+          "risk": "本周一已排内容恢复",
+          "type": "剪辑",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-06",
+          "manualStatusOverride": true
+        },
+        {
+          "id": "week-20260706-mon-zyz-airpro",
+          "day": 1,
+          "due": "周一",
+          "name": "air pro剪辑",
+          "risk": "本周一已排内容恢复",
+          "type": "剪辑",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-06",
+          "manualStatusOverride": true
+        },
+        {
+          "id": "week-20260706-mon-hjw-air",
+          "day": 1,
+          "due": "周一",
+          "name": "air剪辑",
+          "risk": "本周一已排内容恢复",
+          "type": "剪辑",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-06",
+          "manualStatusOverride": true
+        },
+        {
+          "id": "week-20260706-mon-hjw-pro",
+          "day": 1,
+          "due": "周一",
+          "name": "pro剪辑",
+          "risk": "本周一已排内容恢复",
+          "type": "剪辑",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-06",
+          "manualStatusOverride": true
+        },
+        {
+          "id": "week-20260706-tue-wjw-air",
+          "day": 2,
+          "due": "周二",
+          "name": "air剪辑",
+          "risk": "本周二已排内容恢复",
+          "type": "剪辑",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-08",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "week-20260706-tue-zyz-leather",
+          "day": 2,
+          "due": "周二",
+          "name": "皮革剪辑",
+          "risk": "本周二已排内容恢复",
+          "type": "剪辑",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-08",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "week-20260706-tue-hjw-air",
+          "day": 2,
+          "due": "周二",
+          "name": "air常规款剪辑",
+          "risk": "取消拍摄日程",
+          "type": "剪辑",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-08",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1783473990737",
+          "day": 3,
+          "due": "周三",
+          "name": "2条皮革1条air",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-09",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783474016353",
+          "day": 3,
+          "due": "周三",
+          "name": "2条air1条皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-09",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783474035780",
+          "day": 3,
+          "due": "周三",
+          "name": "3条通用皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-09",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783474152387",
+          "day": 3,
+          "due": "周三",
+          "name": "处理所有图片",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 0,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "低",
+          "completedAt": "2026-07-09",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783560771891",
+          "day": 4,
+          "due": "周四",
+          "name": "air常规款",
+          "risk": "组装做法，3个卖点模板，每个模板两个钩子，共计6条",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-10",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783560782656",
+          "day": 4,
+          "due": "周四",
+          "name": "air常规款",
+          "risk": "组装做法，3个卖点模板，每个模板两个钩子，共计6条",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-10",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783560798716",
+          "day": 4,
+          "due": "周四",
+          "name": "air常规款",
+          "risk": "组装做法，3个卖点模板，每个模板两个钩子，共计6条",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-10",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783647411900",
+          "day": 5,
+          "due": "周五",
+          "name": "air常规款",
+          "risk": "1个方向出两条",
+          "type": "自主安排",
+          "units": 1,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-13",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783647543923",
+          "day": 5,
+          "due": "周五",
+          "name": "air pro存量",
+          "risk": "4个钩子8条视频",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-13",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783647559122",
+          "day": 5,
+          "due": "周五",
+          "name": "air pro存量",
+          "risk": "4个钩子8条视频",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-13",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [],
+      "archivedAt": "2026-07-13"
+    },
+    {
+      "id": "week-2026-07-13",
+      "week": {
+        "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+        "type": "big",
+        "workdays": 5,
+        "updatedAt": "07/16 10:07",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-07-13"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1783936389404",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1783936393444",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1783936395806",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1783936398542",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1783936400813",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1783936403278",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1783993727277",
+          "day": 2,
+          "note": "完成主图视频的分镜头脚本设计",
+          "type": "重点会议",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1783993734588",
+          "day": 2,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1783993740067",
+          "day": 2,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1784080092125",
+          "day": 3,
+          "note": "拍剪培训",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1784080109328",
+          "day": 3,
+          "note": "拍剪培训",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1784080119832",
+          "day": 3,
+          "note": "拍剪培训",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        },
+        {
+          "id": "member-1782789762497",
+          "name": "胡家伟"
+        }
+      ],
+      "summary": {
+        "eventUnits": 19,
+        "projectUnits": 35,
+        "requestUnits": 3
+      },
+      "weekKey": "2026-07-13",
+      "projects": [
+        {
+          "id": "internalProject-1783910732565",
+          "day": 1,
+          "due": "周一",
+          "name": "air常规款",
+          "risk": "4个方向8条视频",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-14",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783910745825",
+          "day": 1,
+          "due": "周一",
+          "name": "air pro",
+          "risk": "4个方向8条视频",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-14",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783910785809",
+          "day": 1,
+          "due": "周一",
+          "name": "hue、airpro",
+          "risk": "两条hue、4条air pro、处理图片",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-14",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783993677016",
+          "day": 2,
+          "due": "周二",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-15",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1783993687649",
+          "day": 2,
+          "due": "周二",
+          "name": "air pro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-15",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1783993698695",
+          "day": 2,
+          "due": "周二",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-15",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784080168889",
+          "day": 3,
+          "due": "周三",
+          "name": "皮革",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-16",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1784080177562",
+          "day": 3,
+          "due": "周三",
+          "name": "皮革",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-16",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1784080186288",
+          "day": 3,
+          "due": "周三",
+          "name": "皮革",
+          "risk": "",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-16",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1784167367381",
+          "day": 4,
+          "due": "周四",
+          "name": "air pro两条",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-18",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784167383488",
+          "day": 4,
+          "due": "周四",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-18",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784167392219",
+          "day": 4,
+          "due": "周四",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-18",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request-1783567395726",
+          "due": "2026-07-17",
+          "name": "常旸曦宇亚马逊hue三种钩子拍摄需求",
+          "note": "上周未完成，需重新排期。感谢！！",
+          "type": "新方向新拍摄",
+          "units": 3,
+          "docUrl": "https://lanhevip.feishu.cn/wiki/UJoaw2oAciBafMkdjOqcYLfDnJd?from=from_copylink",
+          "status": "已接收",
+          "channel": "亚马逊",
+          "urgency": "紧急",
+          "weekKey": "2026-07-13",
+          "requester": "常旸曦宇",
+          "assigneeId": "m1",
+          "assigneeIds": [
+            "m1"
+          ],
+          "requestTopic": "hue三种钩子拍摄"
+        }
+      ],
+      "archivedAt": "2026-07-20"
+    },
+    {
+      "id": "week-2026-07-20",
+      "week": {
+        "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+        "type": "small",
+        "workdays": 6,
+        "updatedAt": "07/25 15:03",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-07-20"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1784601989315",
+          "day": 2,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1784601992457",
+          "day": 2,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1784601995809",
+          "day": 2,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1784685940307",
+          "day": 3,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1784685944946",
+          "day": 3,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1784685948927",
+          "day": 3,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1784778148000",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1784778155039",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1784778161126",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1784856801523",
+          "day": 5,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1784856805562",
+          "day": 5,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1784856809320",
+          "day": 5,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1784943678950",
+          "day": 6,
+          "note": "",
+          "type": "请假全天",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1784943731285",
+          "day": 6,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1784963023602",
+          "day": 6,
+          "note": "上课",
+          "type": "重点会议",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1784963027478",
+          "day": 6,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        },
+        {
+          "id": "member-1782789762497",
+          "name": "胡家伟"
+        }
+      ],
+      "summary": {
+        "eventUnits": 42,
+        "projectUnits": 30,
+        "requestUnits": 7
+      },
+      "weekKey": "2026-07-20",
+      "projects": [
+        {
+          "id": "internalProject-1784514000330",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革、AIR",
+          "risk": "8条",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-21",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784514018486",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革、AIR",
+          "risk": "8条",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-21",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784514033462",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革、AIR",
+          "risk": "8条",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-21",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784686014071",
+          "day": 3,
+          "due": "周三",
+          "name": "2hue\\1air",
+          "risk": "3个方向6个视频",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-23",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784686033449",
+          "day": 3,
+          "due": "周三",
+          "name": "2hue\\1air",
+          "risk": "3个方向6个视频",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-23",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784686045817",
+          "day": 3,
+          "due": "周三",
+          "name": "2hue\\1air",
+          "risk": "3个方向6个视频",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-23",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784771657732",
+          "day": 4,
+          "due": "周四",
+          "name": "AIR常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-24",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784771665920",
+          "day": 4,
+          "due": "周四",
+          "name": "AIR常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-24",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1784771672736",
+          "day": 4,
+          "due": "周四",
+          "name": "AIR常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-24",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request-1783567395726",
+          "due": "2026-07-17",
+          "name": "常旸曦宇亚马逊hue三种钩子拍摄需求",
+          "note": "上周未完成，需重新排期。感谢！！",
+          "type": "新方向新拍摄",
+          "units": 3,
+          "docUrl": "https://lanhevip.feishu.cn/wiki/UJoaw2oAciBafMkdjOqcYLfDnJd?from=from_copylink",
+          "status": "已完成",
+          "channel": "亚马逊",
+          "urgency": "紧急",
+          "weekKey": "2026-07-20",
+          "requester": "常旸曦宇",
+          "archivedAt": "2026-07-20",
+          "assigneeId": "m1",
+          "assigneeIds": [
+            "m1"
+          ],
+          "completedAt": "2026-07-22",
+          "requestTopic": "hue三种钩子拍摄"
+        },
+        {
+          "id": "request-1784517220277",
+          "due": "2026-07-24",
+          "name": "陆厅亚马逊雅盾摄影图需求",
+          "note": "",
+          "type": "旧方向新拍摄",
+          "units": 4,
+          "docUrl": "",
+          "status": "已完成",
+          "channel": "亚马逊",
+          "urgency": "紧急",
+          "weekKey": "2026-07-20",
+          "requester": "陆厅",
+          "archivedAt": "2026-07-20",
+          "assigneeId": "",
+          "assigneeIds": [],
+          "completedAt": "2026-07-22",
+          "requestTopic": "雅盾摄影图"
+        }
+      ],
+      "archivedAt": "2026-07-27"
+    },
+    {
+      "id": "week-2026-07-27",
+      "week": {
+        "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+        "type": "big",
+        "workdays": 5,
+        "updatedAt": "07/31 18:07",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-07-27"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1785132625621",
+          "day": 2,
+          "note": "",
+          "type": "重点会议",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1785132629477",
+          "day": 3,
+          "note": "",
+          "type": "重点会议",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1785132634501",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1785132638275",
+          "day": 5,
+          "note": "",
+          "type": "请假全天",
+          "units": 4,
+          "memberId": "member-1782789762497"
+        },
+        {
+          "id": "event-1785204209084",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1785204211476",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1785377710229",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1785377713001",
+          "day": 4,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1785478927090",
+          "day": 5,
+          "note": "",
+          "type": "重点会议",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1785478932496",
+          "day": 5,
+          "note": "",
+          "type": "重点会议",
+          "units": 2,
+          "memberId": "m2"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        },
+        {
+          "id": "member-1782789762497",
+          "name": "胡家伟"
+        },
+        {
+          "id": "member-1785492467428",
+          "name": "张学辉"
+        }
+      ],
+      "summary": {
+        "eventUnits": 28,
+        "projectUnits": 32,
+        "requestUnits": 0
+      },
+      "weekKey": "2026-07-27",
+      "projects": [
+        {
+          "id": "internalProject-1785117278191",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-28",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785117283374",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-28",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785117290611",
+          "day": 1,
+          "due": "周一",
+          "name": "tk视频",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "member-1782789762497",
+          "ownerIds": [
+            "member-1782789762497"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-28",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1785204243949",
+          "day": 2,
+          "due": "周二",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-29",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785204248301",
+          "day": 2,
+          "due": "周二",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-29",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785292742108",
+          "day": 3,
+          "due": "周三",
+          "name": "处理图片、air",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-30",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1785292748753",
+          "day": 3,
+          "due": "周三",
+          "name": "air",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-30",
+          "automatedStatus": "past-completed",
+          "manualStatusOverride": false
+        },
+        {
+          "id": "internalProject-1785379590241",
+          "day": 4,
+          "due": "周四",
+          "name": "airpro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-31",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785379600943",
+          "day": 4,
+          "due": "周四",
+          "name": "airpro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-07-31",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785468015045",
+          "day": 5,
+          "due": "周五",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-03",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785468020723",
+          "day": 5,
+          "due": "周五",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-03",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [],
+      "archivedAt": "2026-08-03"
+    },
+    {
+      "id": "week-2026-08-03",
+      "week": {
+        "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+        "type": "small",
+        "workdays": 6,
+        "updatedAt": "08/08 11:51",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-08-03"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1785810426915",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 3,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1785810430723",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 3,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1785896472444",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1785896476724",
+          "day": 4,
+          "note": "",
+          "type": "重点会议",
+          "units": 1,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1785980761804",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1785980765499",
+          "day": 5,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1786160674048",
+          "day": 6,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1786160679396",
+          "day": 6,
+          "note": "",
+          "type": "全天拍摄",
+          "units": 4,
+          "memberId": "m2"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        }
+      ],
+      "summary": {
+        "eventUnits": 20,
+        "projectUnits": 39,
+        "requestUnits": 0
+      },
+      "weekKey": "2026-08-03",
+      "projects": [
+        {
+          "id": "internalProject-1785722214918",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-04",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785722223989",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-04",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785722238903",
+          "day": 1,
+          "due": "周一",
+          "name": "air pro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "",
+          "ownerIds": [],
+          "priority": "中",
+          "completedAt": "2026-08-04",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785810502413",
+          "day": 2,
+          "due": "周二",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 1,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-05",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785810510834",
+          "day": 2,
+          "due": "周二",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 1,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-05",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785810542676",
+          "day": 2,
+          "due": "周二",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 1,
+          "status": "已完成",
+          "ownerId": "",
+          "ownerIds": [],
+          "priority": "中",
+          "completedAt": "2026-08-05",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785896427925",
+          "day": 3,
+          "due": "周三",
+          "name": "air pro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-06",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785896435844",
+          "day": 3,
+          "due": "周三",
+          "name": "air pro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 3,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-06",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785896465548",
+          "day": 3,
+          "due": "周三",
+          "name": "air pro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "",
+          "ownerIds": [],
+          "priority": "中",
+          "completedAt": "2026-08-06",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1785982747448",
+          "day": 4,
+          "due": "周四",
+          "name": "air pro",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-07",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786071434378",
+          "day": 5,
+          "due": "周五",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-08",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786071442301",
+          "day": 5,
+          "due": "周五",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-08",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786071453231",
+          "day": 5,
+          "due": "周五",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "",
+          "ownerIds": [],
+          "priority": "中",
+          "completedAt": "2026-08-08",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [],
+      "archivedAt": "2026-08-10"
+    },
+    {
+      "id": "week-2026-08-10",
+      "week": {
+        "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+        "type": "big",
+        "workdays": 5,
+        "updatedAt": "08/13 16:36",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-08-10"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1786413068196",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1786413070473",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        }
+      ],
+      "summary": {
+        "eventUnits": 4,
+        "projectUnits": 20,
+        "requestUnits": 0
+      },
+      "weekKey": "2026-08-10",
+      "projects": [
+        {
+          "id": "internalProject-1786326734200",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-11",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786326740298",
+          "day": 1,
+          "due": "周一",
+          "name": "皮革",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-11",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786326782610",
+          "day": 1,
+          "due": "周一",
+          "name": "完成主图视频、修图",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 0,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-11",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786413089803",
+          "day": 2,
+          "due": "周二",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-12",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786413095762",
+          "day": 2,
+          "due": "周二",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-12",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786501806960",
+          "day": 3,
+          "due": "周三",
+          "name": "O3Air",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-13",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786501816968",
+          "day": 3,
+          "due": "周三",
+          "name": "O3Air",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 4,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-13",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786586032026",
+          "day": 4,
+          "due": "周四",
+          "name": "图片制作",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 0,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-14",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786586037888",
+          "day": 4,
+          "due": "周四",
+          "name": "图片制作",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 0,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-14",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [],
+      "archivedAt": "2026-08-17"
+    },
+    {
+      "id": "week-2026-08-17",
+      "week": {
+        "note": "已自动进入新一周，未完成需求保留在需求池；新机素材专项不会随周排期清零。",
+        "type": "small",
+        "workdays": 6,
+        "updatedAt": "08/22 09:40",
+        "dailyStandard": 4,
+        "currentWeekKey": "2026-08-17"
+      },
+      "label": "历史周记录",
+      "events": [
+        {
+          "id": "event-1787022402312",
+          "day": 1,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1787022404710",
+          "day": 1,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        },
+        {
+          "id": "event-1787022408021",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m1"
+        },
+        {
+          "id": "event-1787022410406",
+          "day": 2,
+          "note": "",
+          "type": "半天拍摄",
+          "units": 2,
+          "memberId": "m2"
+        }
+      ],
+      "members": [
+        {
+          "id": "m1",
+          "name": "王敬文"
+        },
+        {
+          "id": "m2",
+          "name": "朱耀赞"
+        }
+      ],
+      "summary": {
+        "eventUnits": 8,
+        "projectUnits": 7,
+        "requestUnits": 9
+      },
+      "weekKey": "2026-08-17",
+      "projects": [
+        {
+          "id": "internalProject-1786933443156",
+          "day": 1,
+          "due": "周一",
+          "name": "O3 HUE主图",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 1,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-18",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1786933470563",
+          "day": 1,
+          "due": "周一",
+          "name": "air常规款",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-18",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1787022424168",
+          "day": 2,
+          "due": "周二",
+          "name": "处理图片",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m1",
+          "ownerIds": [
+            "m1"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-19",
+          "automatedStatus": "past-completed"
+        },
+        {
+          "id": "internalProject-1787022433029",
+          "day": 2,
+          "due": "周二",
+          "name": "hue主图",
+          "risk": "自主安排",
+          "type": "自主安排",
+          "units": 2,
+          "status": "已完成",
+          "ownerId": "m2",
+          "ownerIds": [
+            "m2"
+          ],
+          "priority": "中",
+          "completedAt": "2026-08-19",
+          "automatedStatus": "past-completed"
+        }
+      ],
+      "requests": [
+        {
+          "id": "request-1786521256821",
+          "due": "2026-08-16",
+          "name": "陆厅亚马逊Wind实拍图需求",
+          "note": "上周未完成，需重新排期。",
+          "type": "旧方向新拍摄",
+          "units": 9,
+          "docUrl": "https://lanhevip.feishu.cn/wiki/XngjwdqjLizAtAkgIyFcPH4qnCb?from=from_copylink",
+          "status": "已完成",
+          "channel": "亚马逊",
+          "urgency": "紧急",
+          "weekKey": "2026-08-17",
+          "requester": "陆厅",
+          "archivedAt": "2026-08-17",
+          "assigneeId": "",
+          "assigneeIds": [],
+          "completedAt": "2026-08-18",
+          "requestTopic": "Wind实拍图"
+        }
+      ],
+      "archivedAt": "2026-08-24"
+    }
+  ],
+  "materialCampaign": {
+    "target": 1700,
+    "endDate": "2026-10-15",
+    "products": [
+      {
+        "id": "q3air",
+        "name": "Q3air",
+        "note": "",
+        "target": 500,
+        "imageDone": 50,
+        "videoDone": 84,
+        "imageTarget": 220,
+        "videoTarget": 280
+      },
+      {
+        "id": "q3air-pro",
+        "name": "Q3airPro",
+        "note": "",
+        "target": 350,
+        "imageDone": 45,
+        "videoDone": 64,
+        "imageTarget": 150,
+        "videoTarget": 200
+      },
+      {
+        "id": "q3-vegskin",
+        "name": "Q3Vegskin",
+        "note": "",
+        "target": 300,
+        "imageDone": 38,
+        "videoDone": 69,
+        "imageTarget": 180,
+        "videoTarget": 120
+      },
+      {
+        "id": "o3hue",
+        "name": "O3hue",
+        "note": "",
+        "target": 300,
+        "imageDone": 58,
+        "videoDone": 15,
+        "imageTarget": 190,
+        "videoTarget": 110
+      },
+      {
+        "id": "q3wind",
+        "name": "Q3wind",
+        "note": "",
+        "target": 100,
+        "imageDone": 30,
+        "videoDone": 0,
+        "imageTarget": 75,
+        "videoTarget": 25
+      },
+      {
+        "id": "o3air",
+        "name": "O3air",
+        "note": "",
+        "target": 150,
+        "imageDone": 26,
+        "videoDone": 1,
+        "imageTarget": 107,
+        "videoTarget": 43
+      }
+    ],
+    "startDate": "2026-07-01"
+  }
+}
