@@ -1,6 +1,7 @@
 (() => {
 const STORAGE_KEY = "content-team-dashboard-preview";
-const EDIT_PASSWORD = "content2026";
+const EDIT_PASSWORD = "0702";
+const EDIT_AUTH_KEY = "content-team-dashboard-edit-authorized-until";
 const DATA_VERSION = 15;
 const CURRENT_WEEK_KEY = getWeekKey(new Date());
 const SUPABASE_URL = "https://vcxetbbpigobkekqzmoy.supabase.co";
@@ -1910,6 +1911,42 @@ function requireEditing() {
   return false;
 }
 
+function getEditAuthorizationExpiry() {
+  try {
+    return Number(window.localStorage.getItem(EDIT_AUTH_KEY) || 0);
+  } catch {
+    return 0;
+  }
+}
+
+function hasValidEditAuthorization() {
+  const expiry = getEditAuthorizationExpiry();
+  if (expiry > Date.now()) return true;
+  try {
+    window.localStorage.removeItem(EDIT_AUTH_KEY);
+  } catch {
+    // Storage can be unavailable in strict privacy modes; password entry still works for this session.
+  }
+  return false;
+}
+
+function rememberEditAuthorization() {
+  const expiry = new Date();
+  expiry.setMonth(expiry.getMonth() + 6);
+  try {
+    window.localStorage.setItem(EDIT_AUTH_KEY, String(expiry.getTime()));
+  } catch {
+    // Continue in the current editing session when persistent browser storage is unavailable.
+  }
+}
+
+function requestEditAccess() {
+  selectors.passwordInput.value = "";
+  selectors.passwordError.textContent = "";
+  selectors.passwordDialog.showModal();
+  window.setTimeout(() => selectors.passwordInput.focus(), 50);
+}
+
 function openMemberManager() {
   if (!requireEditing()) return;
   document.querySelector("#management-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -2215,8 +2252,17 @@ function saveEntry() {
 }
 
 selectors.editToggle.addEventListener("click", () => {
-  setEditing(!editing);
-  showToast(editing ? "已进入编辑模式" : "已退出编辑模式");
+  if (editing) {
+    setEditing(false);
+    showToast("已退出编辑模式");
+    return;
+  }
+  if (hasValidEditAuthorization()) {
+    setEditing(true);
+    showToast("授权有效，已进入编辑模式");
+    return;
+  }
+  requestEditAccess();
 });
 
 selectors.confirmPassword.addEventListener("click", () => {
@@ -2224,13 +2270,21 @@ selectors.confirmPassword.addEventListener("click", () => {
     selectors.passwordError.textContent = "密码不正确，请确认后重新输入。";
     return;
   }
+  rememberEditAuthorization();
   selectors.passwordDialog.close();
   setEditing(true);
   if (pendingQuickAdjust) {
     pendingQuickAdjust = false;
     openQuickAdjust();
   }
-  showToast("已进入编辑模式");
+  showToast("验证成功，本设备 6 个月内无需重复输入");
+});
+
+selectors.passwordInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    selectors.confirmPassword.click();
+  }
 });
 
 selectors.saveWeek.addEventListener("click", () => {
