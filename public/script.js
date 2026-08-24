@@ -371,10 +371,11 @@ function normalizeMaterialCampaign(campaign = {}) {
     };
   });
 
+  const productTargetTotal = normalizedProducts.reduce((total, product) => total + Number(product.target || 0), 0);
   return {
     ...defaultState.materialCampaign,
     ...campaign,
-    target: normalizedProducts.reduce((total, product) => total + Number(product.target || 0), 0),
+    target: Math.max(Number(campaign.target ?? productTargetTotal), 0),
     products: normalizedProducts,
   };
 }
@@ -777,8 +778,8 @@ function getMaterialTotals() {
   const imageTarget = products.reduce((total, product) => total + Number(product.imageTarget || 0), 0);
   const videoTarget = products.reduce((total, product) => total + Number(product.videoTarget || 0), 0);
   const done = imageDone + videoDone;
-  const target = imageTarget + videoTarget;
-  state.materialCampaign.target = target;
+  const productTarget = imageTarget + videoTarget;
+  const target = Math.max(Number(state.materialCampaign.target ?? productTarget), 0);
   return {
     imageDone,
     videoDone,
@@ -791,6 +792,22 @@ function getMaterialTotals() {
     videoRemaining: Math.max(videoTarget - videoDone, 0),
     percent: target > 0 ? Math.min((done / target) * 100, 100) : 0,
   };
+}
+
+function formatCampaignDate(dateKey) {
+  const parts = String(dateKey || "").split("-");
+  if (parts.length !== 3) return "未设置";
+  return `${Number(parts[1])}月${Number(parts[2])}日`;
+}
+
+function getMaterialPace(done, target, days) {
+  if (target > 0 && done >= target) return { label: "已完成", className: "status-done" };
+  const actualRatio = target > 0 ? done / target : 0;
+  const expectedRatio = days.total > 0 ? days.elapsed / days.total : 0;
+  if (expectedRatio <= 0) return { label: "推进中", className: "status-progress" };
+  if (actualRatio < expectedRatio * 0.85) return { label: "待提速", className: "status-info" };
+  if (actualRatio > expectedRatio * 1.15) return { label: "超速中", className: "status-fast" };
+  return { label: "推进中", className: "status-progress" };
 }
 
 function formatPercent(value) {
@@ -823,8 +840,10 @@ function renderMaterialCampaign() {
   const totals = getMaterialTotals();
   const days = getCampaignDays();
   const dayPercent = days.total > 0 ? (days.elapsed / days.total) * 100 : 0;
+  const startLabel = formatCampaignDate(campaign.startDate);
+  const endLabel = formatCampaignDate(campaign.endDate);
   if (selectors.materialHelper) {
-    selectors.materialHelper.textContent = `周期：7月1日 - 10月15日，目标 ${totals.target} 条`;
+    selectors.materialHelper.textContent = `周期：${startLabel} - ${endLabel}，目标 ${totals.target} 条`;
   }
 
   selectors.materialDashboard.innerHTML = `
@@ -850,18 +869,35 @@ function renderMaterialCampaign() {
         <div class="period-track">
           <i style="width: ${Math.min(dayPercent, 100)}%"></i>
         </div>
-        <small>距离 10月15日 还剩 ${days.remaining} 天</small>
+        <small>距离 ${endLabel} 还剩 ${days.remaining} 天</small>
       </article>
     </div>
 
     <div class="material-toolbar ${editing ? "" : "readonly"}">
-      <span>${editing ? "可修改品类、图片/视频目标、完成数和备注" : "进入编辑模式后可修改专项数据"}</span>
+      <span>${editing ? "可修改周期、总目标、品类目标、完成数和备注" : "进入编辑模式后可修改专项数据"}</span>
       ${
         editing
           ? `<button class="secondary-button" id="add-material-product" type="button">新增品类</button>`
           : ""
       }
     </div>
+
+    ${
+      editing
+        ? `<div class="material-campaign-editor">
+            <label>开始日期
+              <input data-campaign-field="startDate" type="date" value="${escapeAttribute(campaign.startDate)}" />
+            </label>
+            <label>结束日期
+              <input data-campaign-field="endDate" type="date" min="${escapeAttribute(campaign.startDate)}" value="${escapeAttribute(campaign.endDate)}" />
+            </label>
+            <label>专项总目标
+              <input data-campaign-field="target" type="number" min="${totals.done}" value="${totals.target}" />
+            </label>
+            <p>当前品类目标合计 ${totals.imageTarget + totals.videoTarget} 条；专项总目标可独立调整。</p>
+          </div>`
+        : ""
+    }
 
     <div class="material-product-grid">
       ${campaign.products
@@ -874,8 +910,7 @@ function renderMaterialCampaign() {
           const done = imageDone + videoDone;
           const remaining = Math.max(target - done, 0);
           const percent = target > 0 ? Math.min((done / target) * 100, 100) : 0;
-          const status = percent >= 100 ? "已完成" : percent >= 70 ? "接近完成" : percent >= 35 ? "推进中" : "待提速";
-          const statusClass = percent >= 100 ? "status-done" : percent >= 70 ? "status-good" : percent >= 35 ? "status-progress" : "status-info";
+          const pace = getMaterialPace(done, target, days);
           const todayKey = getDateKey(new Date());
           const todayLog = (product.dailyLogs || [])
             .filter((log) => log.date === todayKey)
@@ -891,7 +926,7 @@ function renderMaterialCampaign() {
                   <h3>${product.name}</h3>
                   <p>总目标 ${target} 条，视频 ${videoTarget} 条，图片 ${imageTarget} 条，剩余 ${remaining} 条</p>
                 </div>
-                <span class="status-tag ${statusClass}">${status}</span>
+                <span class="status-tag ${pace.className}">${pace.label}</span>
               </header>
               ${renderMaterialTrack(imageDone, videoDone, target)}
               <div class="material-product-stats">
@@ -962,6 +997,10 @@ function renderMaterialCampaign() {
     });
   });
 
+  selectors.materialDashboard.querySelectorAll("[data-campaign-field]").forEach((input) => {
+    input.addEventListener("change", () => updateMaterialCampaign(input.dataset.campaignField, input.value));
+  });
+
   selectors.materialDashboard.querySelector("#add-material-product")?.addEventListener("click", addMaterialProduct);
 
   selectors.materialDashboard.querySelectorAll("[data-delete-material]").forEach((button) => {
@@ -983,7 +1022,28 @@ function renderMaterialCampaign() {
   });
 }
 
+function updateMaterialCampaign(field, value) {
+  if (!requireEditing()) return;
+  const campaign = state.materialCampaign;
+  if (field === "target") {
+    const completed = getMaterialTotals().done;
+    const requested = Math.max(Number(value || 0), 0);
+    campaign.target = Math.max(requested, completed);
+    if (campaign.target !== requested) showToast(`专项总目标不能低于已完成 ${completed} 条`);
+  } else if (field === "startDate") {
+    campaign.startDate = value;
+    if (campaign.endDate < value) campaign.endDate = value;
+  } else if (field === "endDate") {
+    campaign.endDate = value < campaign.startDate ? campaign.startDate : value;
+    if (value < campaign.startDate) showToast("结束日期不能早于开始日期");
+  }
+  saveState();
+  render();
+  showToast("专项周期与目标已更新");
+}
+
 function updateMaterialProduct(productId, field, value) {
+  if (!requireEditing()) return;
   const product = state.materialCampaign.products.find((item) => item.id === productId);
   if (!product) return;
 
@@ -1027,6 +1087,7 @@ function updateMaterialProduct(productId, field, value) {
 }
 
 function addDailyMaterialProgress(productId, date, imageValue, videoValue) {
+  if (!requireEditing()) return;
   const product = state.materialCampaign.products.find((item) => item.id === productId);
   if (!product) return;
 
@@ -1068,6 +1129,7 @@ function addDailyMaterialProgress(productId, date, imageValue, videoValue) {
 }
 
 function addMaterialProduct() {
+  if (!requireEditing()) return;
   state.materialCampaign.products.push({
     id: `material-${Date.now()}`,
     name: "新品类",
@@ -1085,6 +1147,7 @@ function addMaterialProduct() {
 }
 
 function deleteMaterialProduct(productId) {
+  if (!requireEditing()) return;
   const product = state.materialCampaign.products.find((item) => item.id === productId);
   if (!product) return;
   if (!window.confirm(`确认删除「${product.name}」吗？这会同时移除它的图片和视频进度。`)) return;
@@ -1838,6 +1901,12 @@ function setEditing(nextEditing) {
   render();
 }
 
+function requireEditing() {
+  if (editing) return true;
+  showToast("请先进入编辑模式");
+  return false;
+}
+
 function showToast(message) {
   selectors.toast.textContent = message;
   selectors.toast.classList.add("show");
@@ -2156,6 +2225,7 @@ selectors.confirmPassword.addEventListener("click", () => {
 });
 
 selectors.saveWeek.addEventListener("click", () => {
+  if (!requireEditing()) return;
   state.week.type = selectors.weekType.value;
   state.week.workdays = Number(selectors.workdays.value || 5);
   state.week.dailyStandard = Number(selectors.dailyStandard.value || 4);
@@ -2169,7 +2239,7 @@ selectors.weekType.addEventListener("change", () => {
 });
 
 selectors.quickAdjust.addEventListener("click", () => {
-  if (!editing) setEditing(true);
+  if (!requireEditing()) return;
   openQuickAdjust();
 });
 
@@ -2178,12 +2248,14 @@ selectors.quickWeekType.addEventListener("change", () => {
 });
 
 selectors.quickSaveWeek.addEventListener("click", () => {
+  if (!requireEditing()) return;
   saveQuickWeek();
   selectors.quickDialog.close();
   showToast("本周工作日设置已更新");
 });
 
 selectors.quickSaveAll.addEventListener("click", () => {
+  if (!requireEditing()) return;
   saveQuickWeek();
   saveQuickEvent();
   saveState();
@@ -2192,10 +2264,10 @@ selectors.quickSaveAll.addEventListener("click", () => {
   showToast("已更新工作日并新增日程");
 });
 
-selectors.addProject.addEventListener("click", () => openEntry("project"));
-selectors.addRequest.addEventListener("click", () => openEntry("request"));
-selectors.addEvent.addEventListener("click", () => openEntry("event"));
-selectors.addMember.addEventListener("click", addMember);
+selectors.addProject.addEventListener("click", () => requireEditing() && openEntry("project"));
+selectors.addRequest.addEventListener("click", () => requireEditing() && openEntry("request"));
+selectors.addEvent.addEventListener("click", () => requireEditing() && openEntry("event"));
+selectors.addMember.addEventListener("click", () => requireEditing() && addMember());
 selectors.newMemberName.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();

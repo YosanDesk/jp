@@ -473,6 +473,27 @@ h3 {
   font-weight: 900;
 }
 
+.material-campaign-editor {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(240px, 1.25fr);
+  align-items: end;
+  gap: 12px;
+  margin: -2px 0 14px;
+  border: 1px solid rgba(34, 185, 129, 0.26);
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(232, 249, 240, 0.78), rgba(244, 250, 255, 0.9));
+  padding: 13px;
+}
+
+.material-campaign-editor p {
+  align-self: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
 .period-track i {
   display: block;
   height: 100%;
@@ -755,6 +776,11 @@ select {
 .status-good {
   background: var(--green-soft);
   color: var(--green);
+}
+
+.status-fast {
+  background: #eee9ff;
+  color: #6941c6;
 }
 
 .status-tight,
@@ -1622,6 +1648,9 @@ body.editing .panel.edit-only {
 }
 
 @media (max-width: 1040px) {
+  .material-campaign-editor {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .status-hero,
   .two-column,
   .material-overview {
@@ -1640,6 +1669,9 @@ body.editing .panel.edit-only {
 }
 
 @media (max-width: 720px) {
+  .material-campaign-editor {
+    grid-template-columns: 1fr;
+  }
   .app-header {
     position: static;
     align-items: flex-start;
