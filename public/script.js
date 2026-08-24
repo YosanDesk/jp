@@ -1,3 +1,4 @@
+(() => {
 const STORAGE_KEY = "content-team-dashboard-preview";
 const EDIT_PASSWORD = "content2026";
 const DATA_VERSION = 15;
@@ -366,6 +367,7 @@ function normalizeMaterialCampaign(campaign = {}) {
       imageDone: Number(product.imageDone || 0),
       videoDone: Number(product.videoDone || 0),
       note: product.note || "",
+      dailyLogs: Array.isArray(product.dailyLogs) ? product.dailyLogs : [],
     };
   });
 
@@ -874,6 +876,13 @@ function renderMaterialCampaign() {
           const percent = target > 0 ? Math.min((done / target) * 100, 100) : 0;
           const status = percent >= 100 ? "已完成" : percent >= 70 ? "接近完成" : percent >= 35 ? "推进中" : "待提速";
           const statusClass = percent >= 100 ? "status-done" : percent >= 70 ? "status-good" : percent >= 35 ? "status-progress" : "status-info";
+          const todayKey = getDateKey(new Date());
+          const todayLog = (product.dailyLogs || [])
+            .filter((log) => log.date === todayKey)
+            .reduce(
+              (total, log) => ({ image: total.image + Number(log.image || 0), video: total.video + Number(log.video || 0) }),
+              { image: 0, video: 0 }
+            );
 
           return `
             <article class="material-product-card">
@@ -897,6 +906,9 @@ function renderMaterialCampaign() {
                       <label>产品名称
                         <input data-material-field="name" data-material-id="${product.id}" type="text" value="${escapeAttribute(product.name)}" />
                       </label>
+                      <label>品类总目标
+                        <input data-material-field="totalTarget" data-material-id="${product.id}" type="number" min="${done}" value="${target}" />
+                      </label>
                       <label>视频目标
                         <input data-material-field="videoTarget" data-material-id="${product.id}" type="number" min="0" value="${videoTarget}" />
                       </label>
@@ -913,6 +925,25 @@ function renderMaterialCampaign() {
                         <input data-material-field="note" data-material-id="${product.id}" type="text" value="${escapeAttribute(product.note || "")}" placeholder="例如：本周主拍视频，图片待补" />
                       </label>
                       <button class="danger-button material-delete-button" data-delete-material="${product.id}" type="button">删除品类</button>
+                    </div>
+                    <div class="material-daily-entry" data-daily-entry="${product.id}">
+                      <div class="material-daily-head">
+                        <strong>录入每日完成量</strong>
+                        <span>今日已录：图片 ${todayLog.image} 条 · 视频 ${todayLog.video} 条</span>
+                      </div>
+                      <div class="material-daily-grid">
+                        <label>完成日期
+                          <input data-daily-field="date" type="date" value="${todayKey}" />
+                        </label>
+                        <label>今日图片完成
+                          <input data-daily-field="image" type="number" min="0" value="0" />
+                        </label>
+                        <label>今日视频完成
+                          <input data-daily-field="video" type="number" min="0" value="0" />
+                        </label>
+                        <button class="primary-button material-daily-save" data-add-daily-material="${product.id}" type="button">计入完成</button>
+                      </div>
+                      <small>录入后会自动累加到该品类，并同步更新品类达成率、总达成数和总达成率。</small>
                     </div>`
                   : product.note
                     ? `<p class="material-note">${product.note}</p>`
@@ -938,6 +969,18 @@ function renderMaterialCampaign() {
       deleteMaterialProduct(button.dataset.deleteMaterial);
     });
   });
+
+  selectors.materialDashboard.querySelectorAll("[data-add-daily-material]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.addDailyMaterial;
+      const container = selectors.materialDashboard.querySelector(`[data-daily-entry="${productId}"]`);
+      if (!container) return;
+      const date = container.querySelector('[data-daily-field="date"]').value;
+      const image = container.querySelector('[data-daily-field="image"]').value;
+      const video = container.querySelector('[data-daily-field="video"]').value;
+      addDailyMaterialProgress(productId, date, image, video);
+    });
+  });
 }
 
 function updateMaterialProduct(productId, field, value) {
@@ -948,6 +991,17 @@ function updateMaterialProduct(productId, field, value) {
     product.name = value.trim() || "未命名品类";
   } else if (field === "note") {
     product.note = value.trim();
+  } else if (field === "totalTarget") {
+    const completedTotal = Number(product.imageDone || 0) + Number(product.videoDone || 0);
+    const requestedTotal = Math.max(Number(value || 0), completedTotal);
+    const currentVideoTarget = Math.max(Number(product.videoTarget || 0), Number(product.videoDone || 0));
+    const nextVideoTarget = Math.min(currentVideoTarget, requestedTotal - Number(product.imageDone || 0));
+    product.videoTarget = Math.max(nextVideoTarget, Number(product.videoDone || 0));
+    product.imageTarget = requestedTotal - product.videoTarget;
+    product.target = requestedTotal;
+    if (requestedTotal !== Number(value || 0)) {
+      showToast(`${product.name} 总目标不能低于已完成 ${completedTotal} 条`);
+    }
   } else if (field === "imageTarget" || field === "videoTarget") {
     const doneField = field === "imageTarget" ? "imageDone" : "videoDone";
     const nextTarget = Math.max(Number(value || 0), Number(product[doneField] || 0));
@@ -972,6 +1026,47 @@ function updateMaterialProduct(productId, field, value) {
   showToast("素材进度已更新");
 }
 
+function addDailyMaterialProgress(productId, date, imageValue, videoValue) {
+  const product = state.materialCampaign.products.find((item) => item.id === productId);
+  if (!product) return;
+
+  const requestedImage = Math.max(Number(imageValue || 0), 0);
+  const requestedVideo = Math.max(Number(videoValue || 0), 0);
+  if (requestedImage === 0 && requestedVideo === 0) {
+    showToast("请填写今天完成的图片或视频条数");
+    return;
+  }
+
+  const imageRemaining = Math.max(Number(product.imageTarget || 0) - Number(product.imageDone || 0), 0);
+  const videoRemaining = Math.max(Number(product.videoTarget || 0) - Number(product.videoDone || 0), 0);
+  const imageAdded = Math.min(requestedImage, imageRemaining);
+  const videoAdded = Math.min(requestedVideo, videoRemaining);
+
+  if (imageAdded === 0 && videoAdded === 0) {
+    showToast(`${product.name} 已达到图片和视频目标`);
+    return;
+  }
+
+  product.imageDone = Number(product.imageDone || 0) + imageAdded;
+  product.videoDone = Number(product.videoDone || 0) + videoAdded;
+  product.dailyLogs = Array.isArray(product.dailyLogs) ? product.dailyLogs : [];
+  product.dailyLogs.push({
+    id: `daily-${Date.now()}`,
+    date: date || getDateKey(new Date()),
+    image: imageAdded,
+    video: videoAdded,
+    createdAt: new Date().toISOString(),
+  });
+
+  saveState();
+  render();
+  if (imageAdded !== requestedImage || videoAdded !== requestedVideo) {
+    showToast("已按剩余目标计入，超出目标的数量未累加");
+  } else {
+    showToast(`已计入 ${product.name}：图片 ${imageAdded} 条，视频 ${videoAdded} 条`);
+  }
+}
+
 function addMaterialProduct() {
   state.materialCampaign.products.push({
     id: `material-${Date.now()}`,
@@ -982,6 +1077,7 @@ function addMaterialProduct() {
     imageDone: 0,
     videoDone: 0,
     note: "",
+    dailyLogs: [],
   });
   saveState();
   render();
@@ -2110,3 +2206,5 @@ selectors.saveEntry.addEventListener("click", saveEntry);
 
 render();
 initializeRemoteSync();
+
+})();

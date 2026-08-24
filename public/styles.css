@@ -558,6 +558,50 @@ h3 {
   min-height: 38px;
 }
 
+.material-daily-entry {
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(34, 185, 129, 0.28);
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(232, 249, 240, 0.8), rgba(244, 250, 255, 0.9));
+  padding: 12px;
+}
+
+.material-daily-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.material-daily-head strong {
+  font-size: 13px;
+}
+
+.material-daily-head span,
+.material-daily-entry > small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.material-daily-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr auto;
+  align-items: end;
+  gap: 8px;
+}
+
+.material-daily-grid input {
+  min-height: 38px;
+}
+
+.material-daily-save {
+  min-height: 38px;
+  white-space: nowrap;
+}
+
 .material-note {
   border-left: 4px solid var(--mint);
   border-radius: 7px;
@@ -1634,8 +1678,14 @@ body.editing .panel.edit-only {
   .member-manager,
   .inline-form,
   .quick-layout,
-  .form-grid {
+  .form-grid,
+  .material-daily-grid {
     grid-template-columns: 1fr;
+  }
+
+  .material-daily-head {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .material-product-stats {
