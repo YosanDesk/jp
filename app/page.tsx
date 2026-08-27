@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Tab = "progress" | "requests" | "ideas";
 type Week = { capacity: number; start: string; end: string };
-type Product = { id: string; name: string; videoTarget: number; videoDone: number; imageTarget: number; imageDone: number };
+type Product = { id: string; name: string; videoTarget: number; videoDone: number; imageTarget: number; imageDone: number; note?: string };
 type WorkRequest = { id: string; name: string; product: string; deliveryType: string; feishuLink: string; quantity: number; dueDate: string; priority: string; submitter: string; notes: string; status: "待确认" | "制作中" | "已完成"; createdAt: string };
 type Idea = { id: string; title: string; copy: string; referenceLink: string; story: string; category: "文案" | "视频" | "用户故事"; recorder: string; accepted: boolean; createdAt: string };
 type AppData = { week: Week; products: Product[]; requests: WorkRequest[]; ideas: Idea[] };
@@ -84,7 +84,7 @@ export default function Home() {
   const acceptedCount = data.ideas.filter((idea) => idea.accepted).length;
 
   const updateProduct = (id: string, patch: Partial<Product>) => setData((current) => ({ ...current, products: current.products.map((p) => p.id === id ? { ...p, ...patch } : p) }));
-  const addProduct = () => setData((current) => ({ ...current, products: [...current.products, { id: uid("product"), name: "", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0 }] }));
+  const addProduct = () => setData((current) => ({ ...current, products: [...current.products, { id: uid("product"), name: "", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" }] }));
 
   const submitRequest = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -160,9 +160,10 @@ function ProductRow({ product, update, remove }: { product: Product; update: (id
     <div className="product-kpis">
       <div><strong>{totalDone}</strong><span>已完成</span></div>
       <div><strong>{pct}%</strong><span>达成率</span></div>
-      <Metric label="图片" done={product.imageDone} target={product.imageTarget} setDone={(value) => update(product.id, { imageDone: value })} setTarget={(value) => update(product.id, { imageTarget: value })} />
       <Metric label="视频" done={product.videoDone} target={product.videoTarget} setDone={(value) => update(product.id, { videoDone: value })} setTarget={(value) => update(product.id, { videoTarget: value })} />
+      <Metric label="图片" done={product.imageDone} target={product.imageTarget} setDone={(value) => update(product.id, { imageDone: value })} setTarget={(value) => update(product.id, { imageTarget: value })} />
     </div>
+    <label className="product-note"><span>备注</span><textarea rows={2} value={product.note || ""} onChange={(e) => update(product.id, { note: e.target.value })} placeholder="记录待确认事项、拍摄要求或交付风险…" /></label>
   </article>;
 }
 function Metric({ label, done, target, setDone, setTarget }: { label: string; done: number; target: number; setDone: (v: number) => void; setTarget: (v: number) => void }) { return <div className="metric"><div><input aria-label={`${label}已完成`} title={`${label}已完成`} type="number" min="0" value={done} onChange={(e) => setDone(safeNumber(e.target.value))} /><span>/</span><input aria-label={`${label}目标`} title={`${label}目标`} type="number" min="0" value={target} onChange={(e) => setTarget(safeNumber(e.target.value))} /></div><small>{label}（完成 / 目标）</small></div>; }

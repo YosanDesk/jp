@@ -80,11 +80,17 @@ main { grid-column: 2; width: 100%; max-width: 1440px; padding: 34px 42px 72px; 
 .product-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .product-kpis > div { display: flex; min-width: 0; min-height: 84px; flex-direction: column; justify-content: center; padding: 13px 14px; border: 1px solid #d4ded9; border-radius: 11px; background: rgba(255, 255, 255, .58); }
 .product-kpis strong { display: block; overflow: hidden; font-size: 24px; line-height: 1.05; letter-spacing: -.035em; text-overflow: ellipsis; }
-.product-kpis > div > span, .product-kpis small { display: block; margin-top: 8px; color: #73827a; font-size: 10px; font-weight: 700; }
+.product-kpis > div > span { display: block; margin-top: 8px; color: #73827a; font-size: 11px; font-weight: 700; }
+.product-kpis small { display: block; margin-top: 8px; color: #66766d; font-size: 12px; font-weight: 750; line-height: 1.35; }
 .product-kpis .metric > div { gap: 3px; }
 .product-kpis .metric input { width: 42px; padding: 2px 0; border: 0; border-bottom: 1px solid #cad7d1; border-radius: 0; background: transparent; font-size: 20px; font-weight: 750; text-align: center; }
 .product-kpis .metric input:focus { border-bottom-color: var(--accent); outline: 0; }
 .product-kpis .metric span { color: #64736b; font-size: 18px; font-weight: 650; }
+.product-note { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 12px; padding-top: 16px; border-top: 1px dashed #d7ddd9; }
+.product-note > span { padding-top: 9px; color: #627168; font-size: 12px; font-weight: 750; }
+.product-note textarea { width: 100%; min-height: 52px; padding: 9px 11px; border: 1px solid #d5ded9; border-radius: 8px; outline: 0; background: rgba(255, 255, 255, .62); color: var(--ink); font-size: 12px; line-height: 1.5; resize: vertical; }
+.product-note textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(241, 83, 45, .09); }
+.product-note textarea::placeholder { color: #aaa9a2; }
 .primary-button, .secondary-button { min-height: 40px; border-radius: 9px; padding: 10px 15px; font-size: 13px; font-weight: 650; }
 .primary-button { border: 0; background: var(--black); color: #fff; }
 .primary-button:hover { background: #2c2b27; }
