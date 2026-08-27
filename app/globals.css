@@ -243,3 +243,6 @@ main { grid-column: 2; width: 100%; max-width: 1440px; padding: 34px 42px 72px; 
   .modal > header { padding: 22px 20px 17px; }
   .toast { right: 14px; bottom: 14px; }
 }
+.week-type { font-style: normal; font-size: .58em; font-weight: 750; vertical-align: middle; }
+.week-type.small { color: #1b74a0; }
+.week-type.large { color: var(--accent); }
