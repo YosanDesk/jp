@@ -12,17 +12,28 @@ type AppData = { week: Week; products: Product[]; requests: WorkRequest[]; ideas
 type SaveState = "loading" | "saved" | "saving" | "error";
 
 const fallback: AppData = {
-  week: { capacity: 0, start: "2026-08-24", end: "2026-08-30" },
+  week: { capacity: 0, start: "2026-08-30", end: "2026-09-06" },
   products: [
     { id: "product-air", name: "Air", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
     { id: "product-air-pro", name: "Air Pro", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
     { id: "product-leather", name: "皮革", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
-  ], requests: [], ideas: [], weekHistory: [], activeWeekId: "2026-08-24",
+  ], requests: [], ideas: [], weekHistory: [], activeWeekId: "2026-08-30",
 };
 
+const rangeLabel = (start: string, end: string) => {
+  const a = new Date(`${start}T00:00:00`); const b = new Date(`${end}T00:00:00`);
+  return `${a.getMonth() + 1}.${a.getDate()}-${b.getMonth() + 1}.${b.getDate()}`;
+};
 const emptyRequest = { name: "", product: "", deliveryType: "视频", feishuLink: "", quantity: 1, dueDate: "2026-08-31", priority: "普通", submitter: "", notes: "" };
 const emptyIdea = { title: "", copy: "", referenceLink: "", story: "", category: "文案" as const, recorder: "" };
 const uid = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+const weeklyPeriods = Array.from({ length: 18 }, (_, index) => {
+  const date = new Date("2026-08-30T00:00:00"); date.setDate(date.getDate() + index * 7);
+  const end = new Date(date); end.setDate(end.getDate() + 7);
+  const fmt = (value: Date) => `${value.getMonth() + 1}.${value.getDate()}`;
+  return { start: date.toISOString().slice(0, 10), end: end.toISOString().slice(0, 10), label: `${fmt(date)}-${fmt(end)}` };
+});
+
 const safeNumber = (value: string | number) => Math.max(0, Number(value) || 0);
 const weekLabel = (start: string) => {
   const anchor = new Date("2026-08-30T00:00:00").getTime();
@@ -131,7 +142,7 @@ export default function Home() {
 
   return <div className="app-shell">
     <aside className="sidebar">
-      <div className="brand"><span className="brand-badge">T</span><div><strong>TORRAS</strong><small>拍剪协作台</small></div></div>
+      <div className="brand"><img className="brand-badge" src="/torras-mark.jpeg" alt="TORRAS" /><div><strong>TORRAS</strong><small>拍剪协作台</small></div></div>
       <nav aria-label="主导航">{([["progress", "视频进度", "01"], ["requests", "视频需求表", "02"], ["ideas", "日区灵感库", "03"]] as const).map(([key, label, index]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}><span>{index}</span><b>{label}</b></button>)}</nav>
       <div className="sidebar-note"><i className={saveState === "error" ? "error-dot" : ""} />{saveState === "loading" ? "正在连接" : saveState === "error" ? "同步异常" : "共享协作中"}<small>数据跨设备实时保存</small></div>
     </aside>
@@ -152,7 +163,7 @@ export default function Home() {
 
 function ProgressView({ data, totals, setData, updateProduct, addProduct, switchWeek }: { data: AppData; totals: { done: number; scheduled: number; remaining: number; capacityPct: number }; setData: React.Dispatch<React.SetStateAction<AppData>>; updateProduct: (id: string, patch: Partial<Product>) => void; addProduct: () => void; switchWeek: (start: string) => void }) {
   return <>
-    <section className="capacity-panel"><div className="panel-heading"><div><span className="section-index">WEEKLY CAPACITY</span><h2>本周产能</h2><p>按本周实际资源规划拍摄与图片交付</p></div><div className="date-range"><label>开始日期<input type="date" value={data.week.start} onChange={(e) => switchWeek(e.target.value)} /></label><span>—</span><label>结束日期<input type="date" value={data.week.end} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, end: e.target.value } }))} /></label><select aria-label="历史周" value={data.week.start} onChange={(e) => switchWeek(e.target.value)}><option value={data.week.start}>{weekLabel(data.week.start)}（当前）</option>{(data.weekHistory || []).filter((item) => item.start !== data.week.start).sort((a,b) => b.start.localeCompare(a.start)).map((item) => <option key={item.id} value={item.start}>{weekLabel(item.start)}</option>)}</select></div></div>
+    <section className="capacity-panel"><div className="panel-heading"><div><span className="section-index">WEEKLY CAPACITY</span><h2>本周产能</h2><p>按本周实际资源规划拍摄与图片交付</p></div><div className="date-range"><label>开始日期<input type="date" value={data.week.start} onChange={(e) => switchWeek(e.target.value)} /></label><span>—</span><label>结束日期<input type="date" value={data.week.end} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, end: e.target.value } }))} /></label><select aria-label="历史周" value={data.week.start} onChange={(e) => switchWeek(e.target.value)}>{!weeklyPeriods.some((period) => period.start === data.week.start) && <option value={data.week.start}>{rangeLabel(data.week.start, data.week.end)}（当前）</option>}{weeklyPeriods.map((period) => <option key={period.start} value={period.start}>{period.label}{period.start === data.week.start ? "（当前）" : ""}</option>)}</select></div></div>
       <div className="summary-grid"><label className="capacity-input"><span>{weekLabel(data.week.start)} · 可完成</span><div><input aria-label="本周可完成内容数量" type="number" min="0" value={data.week.capacity} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, capacity: safeNumber(e.target.value) } }))} /><small>项内容</small></div></label><Summary label="已完成" value={totals.done} unit="项" /><Summary label="已排期" value={totals.scheduled} unit="项" /><Summary label="待完成" value={totals.remaining} unit="项" /><Summary label="还可接需求" value={Math.max(0, data.week.capacity - totals.scheduled)} unit="项" /></div>
       <div className="total-progress"><div><span>总产能进度</span><b>{totals.capacityPct}%</b></div><div className="progress-track"><i style={{ width: `${totals.capacityPct}%` }} /></div><p>{totals.scheduled > data.week.capacity ? `当前排期超出本周产能 ${totals.scheduled - data.week.capacity} 项，请及时调整。` : `本周还有 ${Math.max(0, data.week.capacity - totals.done)} 项内容产能。`}</p></div>
     </section>
