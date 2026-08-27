@@ -48,7 +48,7 @@ main { grid-column: 2; width: 100%; max-width: 1440px; padding: 34px 42px 72px; 
 .date-range { display: flex; align-items: end; gap: 8px; }
 .date-range label { color: var(--muted); font-size: 10px; }
 .date-range input { display: block; margin-top: 5px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); color: var(--ink); font-size: 12px; }
-.summary-grid, .request-stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
+.summary-grid, .request-stats { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
 .summary-grid > div, .summary-grid > label, .request-stats > div { min-width: 0; padding: 19px 20px; border-right: 1px solid var(--line); }
 .summary-grid > :last-child, .request-stats > :last-child { border-right: 0; }
 .summary-grid span, .summary-grid small, .request-stats span, .request-stats small { display: block; color: var(--muted); font-size: 11px; }

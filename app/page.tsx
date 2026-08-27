@@ -12,11 +12,11 @@ type AppData = { week: Week; products: Product[]; requests: WorkRequest[]; ideas
 type SaveState = "loading" | "saved" | "saving" | "error";
 
 const fallback: AppData = {
-  week: { capacity: 48, start: "2026-08-24", end: "2026-08-30" },
+  week: { capacity: 0, start: "2026-08-24", end: "2026-08-30" },
   products: [
-    { id: "product-air", name: "Air", videoTarget: 8, videoDone: 5, imageTarget: 10, imageDone: 7 },
-    { id: "product-air-pro", name: "Air Pro", videoTarget: 6, videoDone: 3, imageTarget: 8, imageDone: 4 },
-    { id: "product-leather", name: "皮革", videoTarget: 4, videoDone: 4, imageTarget: 6, imageDone: 6 },
+    { id: "product-air", name: "Air", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
+    { id: "product-air-pro", name: "Air Pro", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
+    { id: "product-leather", name: "皮革", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
   ], requests: [], ideas: [], weekHistory: [], activeWeekId: "2026-08-24",
 };
 
@@ -24,6 +24,13 @@ const emptyRequest = { name: "", product: "", deliveryType: "视频", feishuLink
 const emptyIdea = { title: "", copy: "", referenceLink: "", story: "", category: "文案" as const, recorder: "" };
 const uid = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 const safeNumber = (value: string | number) => Math.max(0, Number(value) || 0);
+const weekLabel = (start: string) => {
+  const anchor = new Date("2026-08-30T00:00:00").getTime();
+  const value = new Date(`${start}T00:00:00`).getTime();
+  const index = Math.floor((value - anchor) / (7 * 86400000)) + 1;
+  const date = new Date(`${start}T00:00:00`);
+  return `${date.getMonth() + 1}月${date.getDate()}日第${index}周`;
+};
 
 export default function Home() {
   const [tab, setTab] = useState<Tab>("progress");
@@ -145,8 +152,8 @@ export default function Home() {
 
 function ProgressView({ data, totals, setData, updateProduct, addProduct, switchWeek }: { data: AppData; totals: { done: number; scheduled: number; remaining: number; capacityPct: number }; setData: React.Dispatch<React.SetStateAction<AppData>>; updateProduct: (id: string, patch: Partial<Product>) => void; addProduct: () => void; switchWeek: (start: string) => void }) {
   return <>
-    <section className="capacity-panel"><div className="panel-heading"><div><span className="section-index">WEEKLY CAPACITY</span><h2>本周产能</h2><p>按本周实际资源规划拍摄与图片交付</p></div><div className="date-range"><label>开始日期<input type="date" value={data.week.start} onChange={(e) => switchWeek(e.target.value)} /></label><span>—</span><label>结束日期<input type="date" value={data.week.end} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, end: e.target.value } }))} /></label><select aria-label="历史周" value={data.week.start} onChange={(e) => switchWeek(e.target.value)}><option value={data.week.start}>当前周</option>{(data.weekHistory || []).filter((item) => item.start !== data.week.start).sort((a,b) => b.start.localeCompare(a.start)).map((item) => <option key={item.id} value={item.start}>{item.start} 周</option>)}</select></div></div>
-      <div className="summary-grid"><label className="capacity-input"><span>本周可完成</span><div><input aria-label="本周可完成内容数量" type="number" min="0" value={data.week.capacity} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, capacity: safeNumber(e.target.value) } }))} /><small>项内容</small></div></label><Summary label="已完成" value={totals.done} unit="项" /><Summary label="已排期" value={totals.scheduled} unit="项" /><Summary label="待完成" value={totals.remaining} unit="项" /></div>
+    <section className="capacity-panel"><div className="panel-heading"><div><span className="section-index">WEEKLY CAPACITY</span><h2>本周产能</h2><p>按本周实际资源规划拍摄与图片交付</p></div><div className="date-range"><label>开始日期<input type="date" value={data.week.start} onChange={(e) => switchWeek(e.target.value)} /></label><span>—</span><label>结束日期<input type="date" value={data.week.end} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, end: e.target.value } }))} /></label><select aria-label="历史周" value={data.week.start} onChange={(e) => switchWeek(e.target.value)}><option value={data.week.start}>{weekLabel(data.week.start)}（当前）</option>{(data.weekHistory || []).filter((item) => item.start !== data.week.start).sort((a,b) => b.start.localeCompare(a.start)).map((item) => <option key={item.id} value={item.start}>{weekLabel(item.start)}</option>)}</select></div></div>
+      <div className="summary-grid"><label className="capacity-input"><span>{weekLabel(data.week.start)} · 可完成</span><div><input aria-label="本周可完成内容数量" type="number" min="0" value={data.week.capacity} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, capacity: safeNumber(e.target.value) } }))} /><small>项内容</small></div></label><Summary label="已完成" value={totals.done} unit="项" /><Summary label="已排期" value={totals.scheduled} unit="项" /><Summary label="待完成" value={totals.remaining} unit="项" /><Summary label="还可接需求" value={Math.max(0, data.week.capacity - totals.scheduled)} unit="项" /></div>
       <div className="total-progress"><div><span>总产能进度</span><b>{totals.capacityPct}%</b></div><div className="progress-track"><i style={{ width: `${totals.capacityPct}%` }} /></div><p>{totals.scheduled > data.week.capacity ? `当前排期超出本周产能 ${totals.scheduled - data.week.capacity} 项，请及时调整。` : `本周还有 ${Math.max(0, data.week.capacity - totals.done)} 项内容产能。`}</p></div>
     </section>
     <section className="deliveries"><div className="section-heading"><div><span className="section-index">DELIVERY BOARD</span><h2>产品交付明细</h2><p>修改目标和完成量后，进度与状态会自动更新</p></div><button className="primary-button" onClick={addProduct}>＋ 新增产品行</button></div>

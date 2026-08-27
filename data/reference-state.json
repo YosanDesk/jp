@@ -1,9 +1,37 @@
 {
-  "week": { "capacity": 48, "start": "2026-08-24", "end": "2026-08-30" },
+  "week": {
+    "capacity": 0,
+    "start": "2026-08-24",
+    "end": "2026-08-30"
+  },
   "products": [
-    { "id": "product-air", "name": "Air", "videoTarget": 8, "videoDone": 5, "imageTarget": 10, "imageDone": 7 },
-    { "id": "product-air-pro", "name": "Air Pro", "videoTarget": 6, "videoDone": 3, "imageTarget": 8, "imageDone": 4 },
-    { "id": "product-leather", "name": "皮革", "videoTarget": 4, "videoDone": 4, "imageTarget": 6, "imageDone": 6 }
+    {
+      "id": "product-air",
+      "name": "Air",
+      "videoTarget": 0,
+      "videoDone": 0,
+      "imageTarget": 0,
+      "imageDone": 0,
+      "note": ""
+    },
+    {
+      "id": "product-air-pro",
+      "name": "Air Pro",
+      "videoTarget": 0,
+      "videoDone": 0,
+      "imageTarget": 0,
+      "imageDone": 0,
+      "note": ""
+    },
+    {
+      "id": "product-leather",
+      "name": "皮革",
+      "videoTarget": 0,
+      "videoDone": 0,
+      "imageTarget": 0,
+      "imageDone": 0,
+      "note": ""
+    }
   ],
   "requests": [],
   "ideas": []
