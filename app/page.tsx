@@ -137,18 +137,35 @@ function ProgressView({ data, totals, setData, updateProduct, addProduct }: { da
       <div className="total-progress"><div><span>总产能进度</span><b>{totals.capacityPct}%</b></div><div className="progress-track"><i style={{ width: `${totals.capacityPct}%` }} /></div><p>{totals.scheduled > data.week.capacity ? `当前排期超出本周产能 ${totals.scheduled - data.week.capacity} 项，请及时调整。` : `本周还有 ${Math.max(0, data.week.capacity - totals.done)} 项内容产能。`}</p></div>
     </section>
     <section className="deliveries"><div className="section-heading"><div><span className="section-index">DELIVERY BOARD</span><h2>产品交付明细</h2><p>修改目标和完成量后，进度与状态会自动更新</p></div><button className="primary-button" onClick={addProduct}>＋ 新增产品行</button></div>
-      <div className="table-head"><span>产品</span><span>视频</span><span>图片</span><span>总进度</span><span>状态</span><span /></div>
-      {data.products.length === 0 ? <Empty icon="＋" title="还没有产品" text="新增第一行并填写本周交付目标。" action="新增产品行" onAction={addProduct} /> : data.products.map((product) => <ProductRow key={product.id} product={product} update={updateProduct} remove={() => setData((d) => ({ ...d, products: d.products.filter((p) => p.id !== product.id) }))} />)}
+      {data.products.length === 0 ? <Empty icon="＋" title="还没有产品" text="新增第一行并填写本周交付目标。" action="新增产品行" onAction={addProduct} /> : <div className="product-grid">{data.products.map((product) => <ProductRow key={product.id} product={product} update={updateProduct} remove={() => setData((d) => ({ ...d, products: d.products.filter((p) => p.id !== product.id) }))} />)}</div>}
     </section>
   </>;
 }
 
 function Summary({ label, value, unit }: { label: string; value: number; unit: string }) { return <div><span>{label}</span><strong>{value}</strong><small>{unit}</small></div>; }
 function ProductRow({ product, update, remove }: { product: Product; update: (id: string, patch: Partial<Product>) => void; remove: () => void }) {
-  const totalTarget = product.videoTarget + product.imageTarget; const totalDone = Math.min(product.videoDone, product.videoTarget) + Math.min(product.imageDone, product.imageTarget); const pct = totalTarget ? Math.min(100, Math.round(totalDone / totalTarget * 100)) : 0; const complete = totalTarget > 0 && product.videoDone >= product.videoTarget && product.imageDone >= product.imageTarget;
-  return <article className="product-row"><input className="product-name" aria-label="产品名称" placeholder="填写产品名称" value={product.name} onChange={(e) => update(product.id, { name: e.target.value })} /><Metric label="视频" done={product.videoDone} target={product.videoTarget} setDone={(value) => update(product.id, { videoDone: value })} setTarget={(value) => update(product.id, { videoTarget: value })} /><Metric label="图片" done={product.imageDone} target={product.imageTarget} setDone={(value) => update(product.id, { imageDone: value })} setTarget={(value) => update(product.id, { imageTarget: value })} /><div className="row-progress"><b>{totalDone} / {totalTarget}</b><small>{pct}%</small><div><i style={{ width: `${pct}%` }} /></div></div><em className={complete ? "status done" : "status"}>{complete ? "已完成" : "进行中"}</em><button className="icon-button delete" aria-label={`删除${product.name || "产品"}`} onClick={remove}>×</button></article>;
+  const totalTarget = product.videoTarget + product.imageTarget;
+  const totalDone = Math.min(product.videoDone, product.videoTarget) + Math.min(product.imageDone, product.imageTarget);
+  const remaining = Math.max(0, totalTarget - totalDone);
+  const pct = totalTarget ? Math.min(100, Math.round(totalDone / totalTarget * 100)) : 0;
+  const complete = totalTarget > 0 && product.videoDone >= product.videoTarget && product.imageDone >= product.imageTarget;
+  const pace = complete ? "已完成" : pct < 50 ? "待提速" : "进行中";
+  return <article className="product-card">
+    <div className="product-card-head">
+      <input className="product-name" aria-label="产品名称" placeholder="填写产品名称" value={product.name} onChange={(e) => update(product.id, { name: e.target.value })} />
+      <div className="product-card-actions"><em className={`pace-badge ${complete ? "done" : pct < 50 ? "slow" : "active"}`}>{pace}</em><button className="icon-button delete" aria-label={`删除${product.name || "产品"}`} onClick={remove}>×</button></div>
+    </div>
+    <p className="product-summary">总目标 <b>{totalTarget}</b> 项，视频 <b>{product.videoTarget}</b> 条，图片 <b>{product.imageTarget}</b> 张，剩余 <b>{remaining}</b> 项</p>
+    <div className="category-progress" aria-label={`${product.name}进度 ${pct}%`}><i style={{ width: `${pct}%` }} /></div>
+    <div className="product-kpis">
+      <div><strong>{totalDone}</strong><span>已完成</span></div>
+      <div><strong>{pct}%</strong><span>达成率</span></div>
+      <Metric label="图片" done={product.imageDone} target={product.imageTarget} setDone={(value) => update(product.id, { imageDone: value })} setTarget={(value) => update(product.id, { imageTarget: value })} />
+      <Metric label="视频" done={product.videoDone} target={product.videoTarget} setDone={(value) => update(product.id, { videoDone: value })} setTarget={(value) => update(product.id, { videoTarget: value })} />
+    </div>
+  </article>;
 }
-function Metric({ label, done, target, setDone, setTarget }: { label: string; done: number; target: number; setDone: (v: number) => void; setTarget: (v: number) => void }) { return <div className="metric"><small>{label} · 完成 / 目标</small><div><input aria-label={`${label}已完成`} type="number" min="0" value={done} onChange={(e) => setDone(safeNumber(e.target.value))} /><span>/</span><input aria-label={`${label}目标`} type="number" min="0" value={target} onChange={(e) => setTarget(safeNumber(e.target.value))} /></div></div>; }
+function Metric({ label, done, target, setDone, setTarget }: { label: string; done: number; target: number; setDone: (v: number) => void; setTarget: (v: number) => void }) { return <div className="metric"><div><input aria-label={`${label}已完成`} title={`${label}已完成`} type="number" min="0" value={done} onChange={(e) => setDone(safeNumber(e.target.value))} /><span>/</span><input aria-label={`${label}目标`} title={`${label}目标`} type="number" min="0" value={target} onChange={(e) => setTarget(safeNumber(e.target.value))} /></div><small>{label}（完成 / 目标）</small></div>; }
 
 function RequestsView({ requests, onNew, onStatus }: { requests: WorkRequest[]; onNew: () => void; onStatus: (id: string, status: WorkRequest["status"]) => void }) {
   return <section><div className="page-intro"><div><span className="section-index">REQUEST INTAKE</span><h2>集中接收拍摄需求</h2><p>运营提交后自动进入列表，并通过服务端机器人发送飞书群通知。</p></div><button className="primary-button" onClick={onNew}>＋ 提交新需求</button></div><div className="request-stats"><Summary label="全部需求" value={requests.length} unit="条" /><Summary label="待确认" value={requests.filter((x) => x.status === "待确认").length} unit="条" /><Summary label="制作中" value={requests.filter((x) => x.status === "制作中").length} unit="条" /><Summary label="已完成" value={requests.filter((x) => x.status === "已完成").length} unit="条" /></div>{requests.length === 0 ? <Empty icon="02" title="暂无拍摄需求" text="运营和其他同事提交的需求会在这里统一流转。" action="提交第一条需求" onAction={onNew} /> : <div className="request-list">{requests.map((item) => <article className="request-card" key={item.id}><div className="request-top"><div><span className={`priority ${item.priority}`}>{item.priority}</span><h3>{item.name}</h3></div><select aria-label={`${item.name}状态`} value={item.status} onChange={(e) => onStatus(item.id, e.target.value as WorkRequest["status"])}><option>待确认</option><option>制作中</option><option>已完成</option></select></div><div className="request-meta"><span>产品<b>{item.product}</b></span><span>交付<b>{item.deliveryType} × {item.quantity}</b></span><span>截止<b>{item.dueDate}</b></span><span>提交人<b>{item.submitter}</b></span></div>{item.notes && <p>{item.notes}</p>}<footer><time>{new Date(item.createdAt).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })} 提交</time>{item.feishuLink ? <a href={item.feishuLink} target="_blank" rel="noreferrer">打开飞书需求 ↗</a> : <span>无飞书链接</span>}</footer></article>)}</div>}</section>;
