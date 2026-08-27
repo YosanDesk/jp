@@ -28,11 +28,12 @@ const emptyRequest = { name: "", product: "", deliveryType: "视频", feishuLink
 const emptyIdea = { title: "", copy: "", referenceLink: "", story: "", category: "文案" as const, recorder: "" };
 const uid = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 const weekType = (start: string) => Math.abs(Math.round((new Date(`${start}T00:00:00`).getTime() - new Date("2026-08-30T00:00:00").getTime()) / (7 * 86400000))) % 2 === 0 ? "小周" : "大周";
+const localDateValue = (value: Date) => `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
 const weeklyPeriods = Array.from({ length: 18 }, (_, index) => {
   const date = new Date("2026-08-30T00:00:00"); date.setDate(date.getDate() + index * 7);
   const end = new Date(date); end.setDate(end.getDate() + 7);
   const fmt = (value: Date) => `${value.getMonth() + 1}.${value.getDate()}`;
-  return { start: date.toISOString().slice(0, 10), end: end.toISOString().slice(0, 10), label: `${fmt(date)}-${fmt(end)}（${index % 2 === 0 ? "小周" : "大周"}）` };
+  return { start: localDateValue(date), end: localDateValue(end), label: `${fmt(date)}-${fmt(end)}` };
 });
 
 const safeNumber = (value: string | number) => Math.max(0, Number(value) || 0);
@@ -109,13 +110,16 @@ export default function Home() {
   const addProduct = () => setData((current) => ({ ...current, products: [...current.products, { id: uid("product"), name: "", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" }] }));
 
   const switchWeek = (start: string) => setData((current) => {
-    if (start === current.week.start) return current;
+    const period = weeklyPeriods.find((item) => item.start === start);
+    if (!period) return current;
+    if (start === current.week.start) {
+      return current.week.end === period.end ? current : { ...current, week: { ...current.week, end: period.end } };
+    }
     const existing = (current.weekHistory || []).find((item) => item.start === start);
     const archivedCurrent: WeekRecord = { ...current.week, id: current.activeWeekId || current.week.start, products: current.products };
-    if (existing) return { ...current, week: { capacity: existing.capacity, start: existing.start, end: existing.end }, products: existing.products, activeWeekId: existing.id, weekHistory: [...(current.weekHistory || []).filter((item) => item.id !== archivedCurrent.id), archivedCurrent] };
-    const end = new Date(`${start}T00:00:00`); end.setDate(end.getDate() + 6);
-    const nextWeek: Week = { capacity: current.week.capacity, start, end: end.toISOString().slice(0, 10) };
-    return { ...current, week: nextWeek, products: current.products.map((item) => ({ ...item, videoDone: 0, imageDone: 0, note: "" })), activeWeekId: start, weekHistory: [...(current.weekHistory || []).filter((item) => item.id !== archivedCurrent.id), archivedCurrent] };
+    if (existing) return { ...current, week: { capacity: existing.capacity, start: period.start, end: period.end }, products: existing.products, activeWeekId: existing.id, weekHistory: [...(current.weekHistory || []).filter((item) => item.id !== archivedCurrent.id), archivedCurrent] };
+    const nextWeek: Week = { capacity: 0, start: period.start, end: period.end };
+    return { ...current, week: nextWeek, products: current.products.map((item) => ({ ...item, videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" })), activeWeekId: start, weekHistory: [...(current.weekHistory || []).filter((item) => item.id !== archivedCurrent.id), archivedCurrent] };
   });
 
   const submitRequest = async (event: React.FormEvent) => {
