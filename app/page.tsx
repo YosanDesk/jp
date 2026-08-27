@@ -7,7 +7,8 @@ type Week = { capacity: number; start: string; end: string };
 type Product = { id: string; name: string; videoTarget: number; videoDone: number; imageTarget: number; imageDone: number; note?: string };
 type WorkRequest = { id: string; name: string; product: string; deliveryType: string; feishuLink: string; quantity: number; dueDate: string; priority: string; submitter: string; notes: string; status: "待确认" | "制作中" | "已完成"; createdAt: string };
 type Idea = { id: string; title: string; copy: string; referenceLink: string; story: string; category: "文案" | "视频" | "用户故事"; recorder: string; accepted: boolean; createdAt: string };
-type AppData = { week: Week; products: Product[]; requests: WorkRequest[]; ideas: Idea[] };
+type WeekRecord = Week & { id: string; products: Product[] };
+type AppData = { week: Week; products: Product[]; requests: WorkRequest[]; ideas: Idea[]; weekHistory?: WeekRecord[]; activeWeekId?: string };
 type SaveState = "loading" | "saved" | "saving" | "error";
 
 const fallback: AppData = {
@@ -16,7 +17,7 @@ const fallback: AppData = {
     { id: "product-air", name: "Air", videoTarget: 8, videoDone: 5, imageTarget: 10, imageDone: 7 },
     { id: "product-air-pro", name: "Air Pro", videoTarget: 6, videoDone: 3, imageTarget: 8, imageDone: 4 },
     { id: "product-leather", name: "皮革", videoTarget: 4, videoDone: 4, imageTarget: 6, imageDone: 6 },
-  ], requests: [], ideas: [],
+  ], requests: [], ideas: [], weekHistory: [], activeWeekId: "2026-08-24",
 };
 
 const emptyRequest = { name: "", product: "", deliveryType: "视频", feishuLink: "", quantity: 1, dueDate: "2026-08-31", priority: "普通", submitter: "", notes: "" };
@@ -52,6 +53,8 @@ export default function Home() {
         products: Array.isArray(incoming.products) ? incoming.products : fallback.products,
         requests: Array.isArray(incoming.requests) && incoming.requests.every((item) => "deliveryType" in item) ? incoming.requests : [],
         ideas: Array.isArray(incoming.ideas) ? incoming.ideas : [],
+        weekHistory: Array.isArray(incoming.weekHistory) ? incoming.weekHistory : [],
+        activeWeekId: incoming.activeWeekId || incoming.week?.start || fallback.activeWeekId,
       });
       setSaveState("saved"); setReady(true);
     } catch (error) {
@@ -86,6 +89,16 @@ export default function Home() {
   const updateProduct = (id: string, patch: Partial<Product>) => setData((current) => ({ ...current, products: current.products.map((p) => p.id === id ? { ...p, ...patch } : p) }));
   const addProduct = () => setData((current) => ({ ...current, products: [...current.products, { id: uid("product"), name: "", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" }] }));
 
+  const switchWeek = (start: string) => setData((current) => {
+    if (start === current.week.start) return current;
+    const existing = (current.weekHistory || []).find((item) => item.start === start);
+    const archivedCurrent: WeekRecord = { ...current.week, id: current.activeWeekId || current.week.start, products: current.products };
+    if (existing) return { ...current, week: { capacity: existing.capacity, start: existing.start, end: existing.end }, products: existing.products, activeWeekId: existing.id, weekHistory: [...(current.weekHistory || []).filter((item) => item.id !== archivedCurrent.id), archivedCurrent] };
+    const end = new Date(`${start}T00:00:00`); end.setDate(end.getDate() + 6);
+    const nextWeek: Week = { capacity: current.week.capacity, start, end: end.toISOString().slice(0, 10) };
+    return { ...current, week: nextWeek, products: current.products.map((item) => ({ ...item, videoDone: 0, imageDone: 0, note: "" })), activeWeekId: start, weekHistory: [...(current.weekHistory || []).filter((item) => item.id !== archivedCurrent.id), archivedCurrent] };
+  });
+
   const submitRequest = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!requestDraft.name || !requestDraft.product || !requestDraft.dueDate || !requestDraft.submitter) { showToast("error", "请完整填写需求名称、产品、截止日期和提交人"); return; }
@@ -119,7 +132,7 @@ export default function Home() {
     <main>
       <header className="topbar"><div><p className="eyebrow">{labels[tab].eyebrow}</p><h1>{labels[tab].title}</h1></div><div className={`save-pill ${saveState}`}><i />{saveState === "loading" ? "加载共享数据" : saveState === "saving" ? "正在保存" : saveState === "error" ? "保存失败" : "已自动保存"}</div></header>
       {!ready ? <Loading /> : <>
-        {tab === "progress" && <ProgressView data={data} totals={{ done, scheduled, remaining, capacityPct }} setData={setData} updateProduct={updateProduct} addProduct={addProduct} />}
+        {tab === "progress" && <ProgressView data={data} totals={{ done, scheduled, remaining, capacityPct }} setData={setData} updateProduct={updateProduct} addProduct={addProduct} switchWeek={switchWeek} />}
         {tab === "requests" && <RequestsView requests={data.requests} onNew={() => setRequestOpen(true)} onStatus={(id, status) => setData((current) => ({ ...current, requests: current.requests.map((item) => item.id === id ? { ...item, status } : item) }))} />}
         {tab === "ideas" && <IdeasView ideas={data.ideas} acceptedCount={acceptedCount} onNew={() => setIdeaOpen(true)} onToggle={(id) => setData((current) => ({ ...current, ideas: current.ideas.map((item) => item.id === id ? { ...item, accepted: !item.accepted } : item) }))} />}
       </>}
@@ -130,9 +143,9 @@ export default function Home() {
   </div>;
 }
 
-function ProgressView({ data, totals, setData, updateProduct, addProduct }: { data: AppData; totals: { done: number; scheduled: number; remaining: number; capacityPct: number }; setData: React.Dispatch<React.SetStateAction<AppData>>; updateProduct: (id: string, patch: Partial<Product>) => void; addProduct: () => void }) {
+function ProgressView({ data, totals, setData, updateProduct, addProduct, switchWeek }: { data: AppData; totals: { done: number; scheduled: number; remaining: number; capacityPct: number }; setData: React.Dispatch<React.SetStateAction<AppData>>; updateProduct: (id: string, patch: Partial<Product>) => void; addProduct: () => void; switchWeek: (start: string) => void }) {
   return <>
-    <section className="capacity-panel"><div className="panel-heading"><div><span className="section-index">WEEKLY CAPACITY</span><h2>本周产能</h2><p>按本周实际资源规划拍摄与图片交付</p></div><div className="date-range"><label>开始日期<input type="date" value={data.week.start} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, start: e.target.value } }))} /></label><span>—</span><label>结束日期<input type="date" value={data.week.end} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, end: e.target.value } }))} /></label></div></div>
+    <section className="capacity-panel"><div className="panel-heading"><div><span className="section-index">WEEKLY CAPACITY</span><h2>本周产能</h2><p>按本周实际资源规划拍摄与图片交付</p></div><div className="date-range"><label>开始日期<input type="date" value={data.week.start} onChange={(e) => switchWeek(e.target.value)} /></label><span>—</span><label>结束日期<input type="date" value={data.week.end} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, end: e.target.value } }))} /></label><select aria-label="历史周" value={data.week.start} onChange={(e) => switchWeek(e.target.value)}><option value={data.week.start}>当前周</option>{(data.weekHistory || []).filter((item) => item.start !== data.week.start).sort((a,b) => b.start.localeCompare(a.start)).map((item) => <option key={item.id} value={item.start}>{item.start} 周</option>)}</select></div></div>
       <div className="summary-grid"><label className="capacity-input"><span>本周可完成</span><div><input aria-label="本周可完成内容数量" type="number" min="0" value={data.week.capacity} onChange={(e) => setData((d) => ({ ...d, week: { ...d.week, capacity: safeNumber(e.target.value) } }))} /><small>项内容</small></div></label><Summary label="已完成" value={totals.done} unit="项" /><Summary label="已排期" value={totals.scheduled} unit="项" /><Summary label="待完成" value={totals.remaining} unit="项" /></div>
       <div className="total-progress"><div><span>总产能进度</span><b>{totals.capacityPct}%</b></div><div className="progress-track"><i style={{ width: `${totals.capacityPct}%` }} /></div><p>{totals.scheduled > data.week.capacity ? `当前排期超出本周产能 ${totals.scheduled - data.week.capacity} 项，请及时调整。` : `本周还有 ${Math.max(0, data.week.capacity - totals.done)} 项内容产能。`}</p></div>
     </section>
