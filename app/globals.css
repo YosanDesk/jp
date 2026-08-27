@@ -120,9 +120,11 @@ main { grid-column: 2; width: 100%; max-width: 1440px; padding: 34px 42px 72px; 
 .request-list { display: grid; gap: 12px; }
 .request-card { padding: 21px 22px; border: 1px solid var(--line); border-radius: 13px; background: var(--paper); }
 .request-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
-.request-top > div { display: flex; align-items: center; gap: 10px; }
+.request-title, .request-actions { display: flex; align-items: center; gap: 10px; }
 .request-top h3 { margin: 0; font-size: 16px; }
 .request-top select { padding: 8px 30px 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font-size: 12px; }
+.request-delete { padding: 8px 11px; border: 1px solid #ead8d1; border-radius: 8px; background: #fff7f4; color: var(--accent); font-size: 12px; font-weight: 700; }
+.request-delete:hover { border-color: var(--accent); background: #fce7df; }
 .priority { padding: 5px 7px; border-radius: 5px; background: #eeece6; color: var(--muted); font-size: 10px; }
 .priority.优先 { background: #fff0cc; color: #a06700; }
 .priority.紧急 { background: #ffe4dd; color: #c83b1d; }
@@ -234,7 +236,9 @@ main { grid-column: 2; width: 100%; max-width: 1440px; padding: 34px 42px 72px; 
   .idea-summary { gap: 14px; }
   .idea-summary > div { padding-right: 14px; }
   .request-top { align-items: stretch; flex-direction: column; }
-  .request-top > div { align-items: flex-start; flex-direction: column; }
+  .request-title { align-items: flex-start; flex-direction: column; }
+  .request-actions { align-items: stretch; }
+  .request-actions select { flex: 1; }
   .request-meta { grid-template-columns: 1fr 1fr; }
   .form-grid { grid-template-columns: 1fr; padding: 20px; }
   .field.wide, .form-actions { grid-column: 1; }
