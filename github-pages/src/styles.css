@@ -145,8 +145,12 @@ main { grid-column: 2; width: 100%; max-width: 1500px; padding: 30px 42px 72px; 
 .primary-button, .secondary-button { min-height: 40px; border-radius: 9px; padding: 10px 15px; font-size: 13px; font-weight: 650; }
 .primary-button { border: 0; background: var(--black); color: #fff; }
 .primary-button:hover { background: #2c2b27; }
-.primary-button:disabled, .secondary-button:disabled, .request-delete:disabled, .icon-button:disabled, .idea-card button:disabled { cursor: not-allowed; opacity: .38; }
-input:disabled, textarea:disabled, select:disabled { cursor: not-allowed; color: #625f58; opacity: .72; }
+.primary-button:disabled, .secondary-button:disabled, .request-delete:disabled, .icon-button:disabled, .idea-card button:disabled { cursor: default; opacity: .38; }
+input:disabled, textarea:disabled, select:disabled { cursor: default; color: inherit; opacity: 1; -webkit-text-fill-color: currentColor; }
+.page-progress input:disabled, .page-progress textarea:disabled { color: var(--ink); -webkit-text-fill-color: var(--ink); }
+.page-progress .product-name:disabled { color: var(--ink); font-weight: 750; }
+.page-progress .metric input:disabled { color: var(--ink); border-bottom-color: #cad7d1; }
+.page-progress .product-note textarea:disabled { color: #5f6c65; background: rgba(255,255,255,.62); }
 .password-form { display: grid; gap: 16px; padding: 25px 28px 28px; }
 .password-form label { display: grid; gap: 9px; color: var(--ink); font-size: 12px; font-weight: 750; }
 .password-form input { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink); font-size: 16px; letter-spacing: .18em; outline: 0; }
