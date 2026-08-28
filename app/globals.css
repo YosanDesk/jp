@@ -43,6 +43,7 @@ main { grid-column: 2; width: 100%; max-width: 1440px; padding: 34px 42px 72px; 
 .mode-pill { padding: 8px 11px; border-radius: 999px; font-size: 11px; font-weight: 750; }
 .mode-pill.readonly { background: #ece9e2; color: #77736b; }
 .mode-pill.editing { background: #e4f4ec; color: #177254; }
+.mode-pill.open { background: #e8f3ee; color: #256b52; }
 .edit-mode-button { min-height: 36px; padding: 8px 13px; border: 1px solid var(--black); border-radius: 9px; background: var(--black); color: #fff; font-size: 12px; font-weight: 750; }
 .edit-mode-button.active { border-color: #d9d5cc; background: #fff; color: var(--ink); }
 .page-requests .eyebrow, .page-requests .section-index { color: #32946e; }
