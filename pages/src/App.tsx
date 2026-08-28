@@ -9,9 +9,9 @@ type WeekRecord = Week & { id: string; products: Product[] };
 type AppData = { week: Week; products: Product[]; requests: WorkRequest[]; ideas: Idea[]; weekHistory?: WeekRecord[]; activeWeekId?: string };
 type SaveState = "loading" | "saved" | "saving" | "error";
 
-const SUPABASE_URL = "https://vcxetbbpigobkekqzmoy.supabase.co";
-const SUPABASE_KEY = "sb_publishable_n6nVRvL9i5DgDUeEMp-ikw_TszSFoiF";
-const SUPABASE_TABLE = "content_dashboard_state";
+const SUPABASE_URL = "https://phklgazjbpotnyvvtxff.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoa2xnYXpqYnBvdG55dnZ0eGZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczNzcxNzQsImV4cCI6MjEwMjk1MzE3NH0.mLOUEyemAgT0zWWyMDdS37UkQAbqqD3F1zwvHMH4rx4";
+const SUPABASE_TABLE = "torras_dashboard_state";
 const REMOTE_STATE_ID = "main";
 const remoteHeaders = (extra: Record<string, string> = {}) => ({ apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, ...extra });
 
@@ -132,7 +132,7 @@ export default function Home() {
     setData((current) => ({ ...current, requests: [item, ...current.requests] }));
     setRequestOpen(false); setRequestDraft(emptyRequest); showToast("success", "需求已保存，正在通知飞书群");
     try {
-      const response = await fetch(`${SUPABASE_URL}/functions/v1/torras-feishu-notify`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) });
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/torras-feishu-notify`, { method: "POST", headers: remoteHeaders({ "Content-Type": "application/json" }), body: JSON.stringify(item) });
       const payload = await response.json() as { error?: string };
       if (!response.ok) throw new Error(payload.error || "飞书通知失败");
       showToast("success", "需求已保存并发送飞书通知");
