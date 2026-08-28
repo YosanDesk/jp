@@ -147,7 +147,7 @@ export default function Home() {
 
   return <div className="app-shell">
     <aside className="sidebar">
-      <div className="brand"><img className="brand-badge" src="/torras-mark.jpeg" alt="TORRAS" /><div><strong>TORRAS</strong><small>拍剪协作台</small></div></div>
+      <div className="brand"><img className="brand-badge" src="/torras-mark.jpeg" alt="TORRAS" /><div><strong>图拉斯</strong><small>日本站协助台</small></div></div>
       <nav aria-label="主导航">{([["progress", "视频进度", "01"], ["requests", "视频需求表", "02"], ["ideas", "日区灵感库", "03"]] as const).map(([key, label, index]) => <button key={key} className={tab === key ? "active" : ""} onClick={() => setTab(key)}><span>{index}</span><b>{label}</b></button>)}</nav>
       <div className="sidebar-note"><i className={saveState === "error" ? "error-dot" : ""} />{saveState === "loading" ? "正在连接" : saveState === "error" ? "同步异常" : "共享协作中"}<small>数据跨设备实时保存</small></div>
     </aside>
