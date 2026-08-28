@@ -177,7 +177,8 @@ input:disabled, textarea:disabled, select:disabled { cursor: default; color: inh
 .icon-button.delete:hover { background: #f7e5df; color: var(--accent); }
 .page-intro { position: relative; overflow: hidden; padding: 34px; border-radius: 20px; background: var(--black); color: #fff; box-shadow: 0 18px 44px rgba(28,26,21,.12); }
 .page-intro::before { position: absolute; top: -85px; left: 38%; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(241,83,45,.13), transparent 68%); content: ""; pointer-events: none; }
-.page-intro::after { position: absolute; right: -34px; bottom: -62px; width: 175px; height: 175px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; content: ""; }
+.page-intro::after { position: absolute; right: -34px; bottom: -62px; width: 175px; height: 175px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; content: ""; pointer-events: none; }
+.page-intro > * { position: relative; z-index: 1; }
 .page-intro p { max-width: 640px; color: #aaa8a2; }
 .page-intro .primary-button { background: var(--accent); }
 .requests-section .page-intro { background: #17231e; }
