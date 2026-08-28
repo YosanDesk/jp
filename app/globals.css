@@ -207,6 +207,9 @@ input:disabled, textarea:disabled, select:disabled { cursor: not-allowed; color:
 .idea-card footer b { font-size: 10px; }
 .idea-card footer a { color: #675f54; font-size: 9px; }
 .accept, .accepted { border-radius: 7px; padding: 8px 11px; font-size: 11px; font-weight: 700; }
+.idea-actions { display: flex; align-items: center; gap: 7px; }
+.idea-delete { border: 1px solid rgba(166, 65, 40, .22); border-radius: 7px; padding: 8px 10px; background: rgba(255,255,255,.38); color: #a4432d; font-size: 11px; font-weight: 700; }
+.idea-delete:hover { border-color: #c05a3f; background: rgba(255,244,239,.78); }
 .accept { border: 1px solid rgba(40, 35, 28, .25); background: rgba(255, 255, 255, .45); }
 .accepted { border: 1px solid var(--accent); background: var(--accent); color: #fff; }
 .empty-state { display: grid; justify-items: center; padding: 90px 24px; border: 1px dashed #d4d0c7; border-radius: 14px; background: rgba(255,255,255,.45); text-align: center; }
