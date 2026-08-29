@@ -218,8 +218,8 @@ input:disabled, textarea:disabled, select:disabled { cursor: default; color: inh
 .idea-card.tone-1 { background: #f8e3da; transform: rotate(.3deg); }
 .idea-card.tone-2 { background: #e9eadb; transform: rotate(-.18deg); }
 .idea-card-head, .idea-card footer, .idea-card footer > div { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.idea-card-head span { padding: 5px 7px; border: 1px solid rgba(50, 45, 36, .18); border-radius: 5px; font-size: 9px; }
-.idea-card time { color: #7b756b; font-size: 9px; }
+.idea-card-head span { padding: 5px 8px; border: 1px solid rgba(50, 45, 36, .18); border-radius: 5px; font-size: 11px; }
+.idea-card time { color: #7b756b; font-size: 11px; font-weight: 600; }
 .idea-card h3 { margin: 0; font-size: 19px; line-height: 1.35; }
 .idea-card small { color: #81796c; font-size: 9px; font-weight: 750; }
 .idea-card p { margin: 6px 0 0; font-size: 12px; line-height: 1.65; white-space: pre-wrap; }
