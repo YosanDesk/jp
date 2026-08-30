@@ -18,12 +18,12 @@ const EDIT_PASSWORD = "0702";
 const remoteHeaders = (extra: Record<string, string> = {}) => ({ apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, ...extra });
 
 const fallback: AppData = {
-  week: { capacity: 0, start: "2026-08-30", end: "2026-09-06" },
+  week: { capacity: 0, start: "2026-08-31", end: "2026-09-06" },
   products: [
     { id: "product-air", name: "Air", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
     { id: "product-air-pro", name: "Air Pro", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
     { id: "product-leather", name: "皮革", videoTarget: 0, videoDone: 0, imageTarget: 0, imageDone: 0, note: "" },
-  ], requests: [], ideas: [], weekHistory: [], activeWeekId: "2026-08-30",
+  ], requests: [], ideas: [], weekHistory: [], activeWeekId: "2026-08-31",
 };
 
 const rangeLabel = (start: string, end: string) => {
@@ -32,20 +32,26 @@ const rangeLabel = (start: string, end: string) => {
 };
 const emptyRequest = { name: "", product: "", deliveryType: "视频", feishuLink: "", quantity: 1, dueDate: "2026-08-31", priority: "普通", submitter: "", notes: "" };
 const uid = (prefix: string) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
-const weekType = (start: string) => Math.abs(Math.round((new Date(`${start}T00:00:00`).getTime() - new Date("2026-08-30T00:00:00").getTime()) / (7 * 86400000))) % 2 === 0 ? "小周" : "大周";
+const weekType = (start: string) => Math.abs(Math.round((new Date(`${start}T00:00:00`).getTime() - new Date("2026-08-31T00:00:00").getTime()) / (7 * 86400000))) % 2 === 0 ? "小周" : "大周";
 const localDateValue = (value: Date) => `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`;
+const normalizeLegacyWeekStart = (start: string) => {
+  const value = new Date(`${start}T00:00:00`); const anchor = new Date("2026-08-30T00:00:00");
+  const offset = Math.round((value.getTime() - anchor.getTime()) / 86400000);
+  if (offset >= 0 && offset <= 119 && offset % 7 === 0) { value.setDate(value.getDate() + 1); return localDateValue(value); }
+  return start;
+};
 const emptyIdea = { title: "", copy: "", referenceLink: "", story: "", category: "文案" as const, recorder: "", date: localDateValue(new Date()) };
 const ideaDateLabel = (idea: Idea) => new Date(`${idea.date || idea.createdAt.slice(0, 10)}T00:00:00`).toLocaleDateString("zh-CN", { month: "numeric", day: "numeric" });
-const weeklyPeriods = Array.from({ length: 18 }, (_, index) => {
-  const date = new Date("2026-08-30T00:00:00"); date.setDate(date.getDate() + index * 7);
-  const end = new Date(date); end.setDate(end.getDate() + 7);
+const weeklyPeriods = Array.from({ length: 17 }, (_, index) => {
+  const date = new Date("2026-08-31T00:00:00"); date.setDate(date.getDate() + index * 7);
+  const end = new Date(date); end.setDate(end.getDate() + 6);
   const fmt = (value: Date) => `${value.getMonth() + 1}.${value.getDate()}`;
   return { start: localDateValue(date), end: localDateValue(end), label: `${fmt(date)}-${fmt(end)}` };
 });
 
 const safeNumber = (value: string | number) => Math.max(0, Number(value) || 0);
 const weekLabel = (start: string) => {
-  const anchor = new Date("2026-08-30T00:00:00").getTime();
+  const anchor = new Date("2026-08-31T00:00:00").getTime();
   const value = new Date(`${start}T00:00:00`).getTime();
   const index = Math.floor((value - anchor) / (7 * 86400000)) + 1;
   const date = new Date(`${start}T00:00:00`);
@@ -79,13 +85,16 @@ export default function Home() {
       if (!response.ok) throw new Error("读取共享数据失败");
       const rows = await response.json() as Array<{ data?: AppData }>;
       const incoming = (rows[0]?.data || fallback) as Partial<AppData>;
+      const loadedWeek = { ...fallback.week, ...(incoming.week || {}) };
+      loadedWeek.start = normalizeLegacyWeekStart(loadedWeek.start);
+      const loadedHistory = Array.isArray(incoming.weekHistory) ? incoming.weekHistory.map((item) => { const start = normalizeLegacyWeekStart(item.start); return start === item.start ? item : { ...item, id: start, start }; }) : [];
       setData({
-        week: { ...fallback.week, ...(incoming.week || {}) },
+        week: loadedWeek,
         products: Array.isArray(incoming.products) ? incoming.products : fallback.products,
         requests: Array.isArray(incoming.requests) && incoming.requests.every((item) => "deliveryType" in item) ? incoming.requests : [],
         ideas: Array.isArray(incoming.ideas) ? incoming.ideas : [],
-        weekHistory: Array.isArray(incoming.weekHistory) ? incoming.weekHistory : [],
-        activeWeekId: incoming.activeWeekId || incoming.week?.start || fallback.activeWeekId,
+        weekHistory: loadedHistory,
+        activeWeekId: normalizeLegacyWeekStart(incoming.activeWeekId || incoming.week?.start || fallback.activeWeekId || fallback.week.start),
       });
       setSaveState("saved"); setReady(true);
     } catch (error) {
